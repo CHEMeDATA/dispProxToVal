@@ -25,4 +25,6 @@ dispQuality.init("./spinFit.json");
 
 ## Examples
 
-[https://chemedata.github.io/dispProxToVal/examples](https://chemedata.github.io/dispProxToVal/examples)
+[Example with series of graphs](https://chemedata.github.io/dispProxToVal/examples)
+from
+[these data](./data/doubleSeries.json)
