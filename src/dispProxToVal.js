@@ -125,13 +125,13 @@ class DispProxToVal {
 			refposY,
 			ratioDispData.length * width,
 			heightCurBlockC,
-			!is1Max
+			is1Max
 		);
 	}
 
 	drawFrame(refposX, refposY, totalWidth, totalHeight, is1Max) {
 		let shift_line = is1Max ? totalHeight / 2 : 0;
-		let shift_text = is1Max ? totalHeight + 2 : totalHeight - 5;
+		let shift_text = is1Max ? totalHeight - 5 : totalHeight + 2;
 
 		this.svg
 			.append("line")
