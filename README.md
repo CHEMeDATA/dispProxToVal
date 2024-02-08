@@ -25,5 +25,4 @@ dispQuality.init("./spinFit.json");
 
 ## Examples
 
-https://chemdata.github.io/dispProxToVal/examples/
-
+[https://chemedata.github.io/dispProxToVal/examples](https://chemedata.github.io/dispProxToVal/examples)
