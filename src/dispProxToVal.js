@@ -131,7 +131,7 @@ class DispProxToVal {
 
 	drawFrame(refposX, refposY, totalWidth, totalHeight, is1Max) {
 		const shift_line = is1Max ? 0 : (totalHeight / 2);
-		const shift_text = is1Max ? (totalHeight + 2) : (totalHeight - 5);
+		const shift_text = is1Max ? (totalHeight - 5) : (totalHeight + 2);
 
 		this.svg
 			.append("line")
