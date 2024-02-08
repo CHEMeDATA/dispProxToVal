@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>D3 Drawing Example</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="../src/dispProxToVal.js"></script>
+</head>
+<body>
+    <svg id="drawing"></svg>
+
+    <script>
+const dispQuality = new DispProxToVal("#drawing");
+dispQuality.init("../data/spinFit.json");
+    </script>
+</body>
+</html>
+

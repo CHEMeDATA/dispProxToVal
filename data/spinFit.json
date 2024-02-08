@@ -1,0 +1,644 @@
+{
+    "MnovaDocumentShortName": "01",
+    "NotSureWhatItIsInMiliSec": 1295,
+    "algorithm": "Simulated Annealing(S:120 F:0.9 I:10 C:100 S:10 V:1 W:False N:n)\n",
+    "fitSuccesfull": true,
+    "spinFitVariableArray": {
+        "qualityEachMultiplet": [
+            {
+                "containsSigma": false,
+                "integral1Ref": 0.20449958225929954,
+                "integral2Sim": 2.944607246972282,
+                "labelVarSet": "NoMeanneLabel",
+                "lineKurtosis": 0.27500012516975403,
+                "lineOptimized": true,
+                "lineShapeFactor": 0.06310375779867172,
+                "lineShapeLineWidth": 0.37499991059303284,
+                "m1X2": 0.14136994385213286,
+                "m2DistEXtreSlopes": 0.010550583712756634,
+                "m3MaxMinRatio": 10.711302757263184,
+                "m4PercentInte": -1360.925470012222,
+                "m5NScalPro": 0.7137166408808584,
+                "proj2": 0.029887451221277242,
+                "satisfactory": false,
+                "sp": 0.004220394512371708,
+                "stepNumber": 0,
+                "sum1Ref": 0.00024762260289207396,
+                "sum2Sim": 0.14120958261463118
+            },
+            {
+                "containsSigma": true,
+                "integral1Ref": 0.4925472112845455,
+                "integral2Sim": 0.4879025016034575,
+                "labelVarSet": "δ(5)",
+                "lineKurtosis": 0.6000001430511475,
+                "lineOptimized": true,
+                "lineShapeFactor": 0.06567251682281494,
+                "lineShapeLineWidth": 0.4218749403953552,
+                "m1X2": 8.325378586657339e-05,
+                "m2DistEXtreSlopes": 0.0003938340814784169,
+                "m3MaxMinRatio": 0.1751897633075714,
+                "m4PercentInte": 89.4059814592863,
+                "m5NScalPro": 0.9937677347501954,
+                "proj2": 1.0003195001791894,
+                "satisfactory": true,
+                "sp": 0.006614713327655448,
+                "stepNumber": 2,
+                "sum1Ref": 0.0067000798405988165,
+                "sum2Sim": 0.006612600600578656
+            },
+            {
+                "containsSigma": true,
+                "integral1Ref": 0.49636186100360646,
+                "integral2Sim": 0.4943178391536094,
+                "labelVarSet": "δ(7)",
+                "lineKurtosis": 0.25000011920928955,
+                "lineOptimized": true,
+                "lineShapeFactor": 0.06291906535625458,
+                "lineShapeLineWidth": 0.3718748986721039,
+                "m1X2": 1.5420716961662583e-05,
+                "m2DistEXtreSlopes": 4.034052835777402e-05,
+                "m3MaxMinRatio": 0.09055894613265991,
+                "m4PercentInte": 94.37478188047358,
+                "m5NScalPro": 0.9978327933312922,
+                "proj2": 0.9996162271220386,
+                "satisfactory": true,
+                "sp": 0.003547420143058439,
+                "stepNumber": 3,
+                "sum1Ref": 0.003561478933712081,
+                "sum2Sim": 0.0035487820693664578
+            },
+            {
+                "containsSigma": true,
+                "integral1Ref": 0.4955427124641574,
+                "integral2Sim": 0.500778522512519,
+                "labelVarSet": "δ(8)",
+                "lineKurtosis": 0.07500013709068298,
+                "lineOptimized": true,
+                "lineShapeFactor": 0.06236136332154274,
+                "lineShapeLineWidth": 0.3874998986721039,
+                "m1X2": 4.2466845259260225e-05,
+                "m2DistEXtreSlopes": 0.00035028322599828243,
+                "m3MaxMinRatio": 0.1704753041267395,
+                "m4PercentInte": 92.43292634900818,
+                "m5NScalPro": 0.9966704509184663,
+                "proj2": 0.9997386281371652,
+                "satisfactory": true,
+                "sp": 0.0063470284427737545,
+                "stepNumber": 4,
+                "sum1Ref": 0.006387835919673264,
+                "sum2Sim": 0.006348687811133507
+            },
+            {
+                "containsSigma": true,
+                "integral1Ref": 1.4666232413146645,
+                "integral2Sim": 1.4616083837026963,
+                "labelVarSet": "δ(14)",
+                "lineKurtosis": 0.27500012516975403,
+                "lineOptimized": true,
+                "lineShapeFactor": 0.06310375779867172,
+                "lineShapeLineWidth": 0.37499991059303284,
+                "m1X2": 0.0001041063279847961,
+                "m2DistEXtreSlopes": 0.0009091170504689217,
+                "m3MaxMinRatio": 0.08005771785974503,
+                "m4PercentInte": 97.41065271175661,
+                "m5NScalPro": 0.9995831937344704,
+                "proj2": 1.0003571721067057,
+                "satisfactory": true,
+                "sp": 0.12474405132100667,
+                "stepNumber": 1,
+                "sum1Ref": 0.1248926968364453,
+                "sum2Sim": 0.12469951213355275
+            },
+            {
+                "containsSigma": false,
+                "integral1Ref": 0.037486103153241856,
+                "integral2Sim": 0,
+                "labelVarSet": "J(5-7)",
+                "lineKurtosis": 0.27500012516975403,
+                "lineOptimized": true,
+                "lineShapeFactor": 0.06310375779867172,
+                "lineShapeLineWidth": 0.37499991059303284,
+                "m1X2": 4.246670176590875e-05,
+                "m2DistEXtreSlopes": 0,
+                "m3MaxMinRatio": null,
+                "m4PercentInte": 0,
+                "m5NScalPro": 0,
+                "proj2": null,
+                "satisfactory": true,
+                "sp": 0,
+                "stepNumber": 2,
+                "sum1Ref": 4.246670176590875e-05,
+                "sum2Sim": 0
+            },
+            {
+                "containsSigma": false,
+                "integral1Ref": 0.037486103153241856,
+                "integral2Sim": 0,
+                "labelVarSet": "J(5-8)",
+                "lineKurtosis": 0.27500012516975403,
+                "lineOptimized": true,
+                "lineShapeFactor": 0.06310375779867172,
+                "lineShapeLineWidth": 0.37499991059303284,
+                "m1X2": 4.246670176590875e-05,
+                "m2DistEXtreSlopes": 0,
+                "m3MaxMinRatio": null,
+                "m4PercentInte": 0,
+                "m5NScalPro": 0,
+                "proj2": null,
+                "satisfactory": true,
+                "sp": 0,
+                "stepNumber": 2,
+                "sum1Ref": 4.246670176590875e-05,
+                "sum2Sim": 0
+            },
+            {
+                "containsSigma": false,
+                "integral1Ref": 0.037486103153241856,
+                "integral2Sim": 0,
+                "labelVarSet": "J(7-8)",
+                "lineKurtosis": 0.27500012516975403,
+                "lineOptimized": true,
+                "lineShapeFactor": 0.06310375779867172,
+                "lineShapeLineWidth": 0.37499991059303284,
+                "m1X2": 4.246670176590875e-05,
+                "m2DistEXtreSlopes": 0,
+                "m3MaxMinRatio": null,
+                "m4PercentInte": 0,
+                "m5NScalPro": 0,
+                "proj2": null,
+                "satisfactory": true,
+                "sp": 0,
+                "stepNumber": 3,
+                "sum1Ref": 4.246670176590875e-05,
+                "sum2Sim": 0
+            },
+            {
+                "containsSigma": false,
+                "integral1Ref": 0,
+                "integral2Sim": 0,
+                "labelVarSet": "",
+                "lineKurtosis": 0,
+                "lineOptimized": false,
+                "lineShapeFactor": 0,
+                "lineShapeLineWidth": 0,
+                "m1X2": 0,
+                "m2DistEXtreSlopes": 0,
+                "m3MaxMinRatio": 0,
+                "m4PercentInte": 0,
+                "m5NScalPro": 0,
+                "proj2": 0,
+                "satisfactory": false,
+                "sp": 0,
+                "stepNumber": 0,
+                "sum1Ref": 0,
+                "sum2Sim": 0
+            },
+            {
+                "containsSigma": false,
+                "integral1Ref": 0,
+                "integral2Sim": 0,
+                "labelVarSet": "",
+                "lineKurtosis": 0,
+                "lineOptimized": false,
+                "lineShapeFactor": 0,
+                "lineShapeLineWidth": 0,
+                "m1X2": 0,
+                "m2DistEXtreSlopes": 0,
+                "m3MaxMinRatio": 0,
+                "m4PercentInte": 0,
+                "m5NScalPro": 0,
+                "proj2": 0,
+                "satisfactory": false,
+                "sp": 0,
+                "stepNumber": 0,
+                "sum1Ref": 0,
+                "sum2Sim": 0
+            },
+            {
+                "containsSigma": false,
+                "integral1Ref": 0,
+                "integral2Sim": 0,
+                "labelVarSet": "",
+                "lineKurtosis": 0,
+                "lineOptimized": false,
+                "lineShapeFactor": 0,
+                "lineShapeLineWidth": 0,
+                "m1X2": 0,
+                "m2DistEXtreSlopes": 0,
+                "m3MaxMinRatio": 0,
+                "m4PercentInte": 0,
+                "m5NScalPro": 0,
+                "proj2": 0,
+                "satisfactory": false,
+                "sp": 0,
+                "stepNumber": 0,
+                "sum1Ref": 0,
+                "sum2Sim": 0
+            }
+        ]
+    },
+    "stages": [
+        {
+            "StageText": "Preliminary",
+            "allOK": false,
+            "chemShiftAfterStep": " >1 δ(5) 8.6 ppm  assignmentStatusString : Assigned chemical shift.\n >2 δ(7) 8.3497 ppm  assignmentStatusString : Assigned chemical shift.\n >3 δ(8) 7.9502 ppm  assignmentStatusString : Assigned chemical shift.\n >4 δ(14) 3.95 ppm  assignmentStatusString : Assigned chemical shift.\n >5 J(5-7) 2.499206543 Hz  assignmentStatusString : The coupling constants found in the multiplets of the spectrum matched uniquely.\n >6 J(5-8) 0.1 Hz  assignmentStatusString : FromPrediction\n >7 J(7-8) 8.535705566 Hz  assignmentStatusString : The coupling constants found in the multiplets of the spectrum matched uniquely.\n",
+            "failedVariables": "Not satisfactory : , δ(7) = 8.3497, δ(8) = 7.9502 , J(7-8) = 8.535705566",
+            "steps": [
+                {
+                    "StepNumber": "1 / 4",
+                    "listOfVariables": " 1δ : δ(14)",
+                    "quality_IntegrationFactor_3": "0.0954439",
+                    "quality_lineKurtosis_3": 0.27500012516975403,
+                    "quality_lineOptimized_3": true,
+                    "quality_lineShapeFactor_3": 0.06310375779867172,
+                    "quality_lineShapeLineWidth_3": 0.37499991059303284,
+                    "quality_m5NScalPro_3": 0.9995831937344704,
+                    "quality_proj2_3": 1.0003571721067057,
+                    "satisfied3": true,
+                    "workOnLineWidthInMiliSec": 58,
+                    "workOnLineWith3": "δ(14) is satisfactory qualityl.m5NScalPro (0.999583) > 0.99  Yes δ(14)",
+                    "z_allcheckedvariablesOK_after": false,
+                    "z_allcheckedvariablesOK_before": false
+                },
+                {
+                    "StepNumber": "2 / 4",
+                    "listOfVariables": " 1δ 2J : δ(5) J(5-7) J(5-8)",
+                    "quality_IntegrationFactor_0": "0.0948428",
+                    "quality_lineKurtosis_0": 0.6000001430511475,
+                    "quality_lineOptimized_0": true,
+                    "quality_lineShapeFactor_0": 0.06567251682281494,
+                    "quality_lineShapeLineWidth_0": 0.4218749403953552,
+                    "quality_m5NScalPro_0": 0.9937677347501954,
+                    "quality_proj2_0": 1.0003195001791894,
+                    "satisfied0": true,
+                    "workOnLineWidthInMiliSec": 47,
+                    "workOnLineWith0": "δ(5) is satisfactory qualityl.m5NScalPro (0.993768) > 0.99  Yes δ(5)",
+                    "z_allcheckedvariablesOK_after": false,
+                    "z_allcheckedvariablesOK_before": false
+                },
+                {
+                    "StepNumber": "3 / 4",
+                    "listOfVariables": " 1δ 1J : δ(7) J(7-8)",
+                    "satisfied1": false,
+                    "workOnLineWidthInMiliSec": 3,
+                    "workOnLineWith1": "δ(7) is NOT satisfactory qualityl.m5NScalPro (0.790707 < 0.99 )",
+                    "z_allcheckedvariablesOK_after": false,
+                    "z_allcheckedvariablesOK_before": false
+                },
+                {
+                    "StepNumber": "4 / 4",
+                    "listOfVariables": " 1δ : δ(8)",
+                    "satisfied2": false,
+                    "workOnLineWidthInMiliSec": 84,
+                    "workOnLineWith2": "δ(8) is NOT satisfactory qualityl.m5NScalPro (0.889969 < 0.99 )",
+                    "z_allcheckedvariablesOK_after": false,
+                    "z_allcheckedvariablesOK_before": false
+                }
+            ],
+            "timeStats": "  - Algorithm 1 (Simulated Annealing) time: 0 s\n    - Line width 1/1 (0.75 Hz) time: 0.455 s\n",
+            "z_log": "\nUZIO   CCCCJJJooo (type of variable: Chemical shift, J coupling or linewidth parameter)\nUZIO_F YnnYYYnnnn\nUZIO_F satisfactory CS : δ(5) = 8.6, δ(14) = 3.95\nUZIO_F satisfactory J : , J(5-7) = 2.499206543, J(5-8) = 0.1\nUZIO_F Not satisfactory CS : , δ(7) = 8.3497, δ(8) = 7.9502\nUZIO_F Not satisfactory J : , J(7-8) = 8.535705566"
+        },
+        {
+            "StageText": "0",
+            "allOK": true,
+            "chemShiftAfterStep": " >1 δ(5) 8.6 ppm  assignmentStatusString : Assigned chemical shift.\n >2 δ(7) 8.350350367 ppm  assignmentStatusString : Assigned chemical shift.\n >3 δ(8) 7.949763979 ppm  assignmentStatusString : Assigned chemical shift.\n >4 δ(14) 3.95 ppm  assignmentStatusString : Assigned chemical shift.\n >5 J(5-7) 2.499206543 Hz  assignmentStatusString : The coupling constants found in the multiplets of the spectrum matched uniquely.\n >6 J(5-8) 0.1 Hz  assignmentStatusString : FromPrediction\n >7 J(7-8) 8.544600269 Hz  assignmentStatusString : The coupling constants found in the multiplets of the spectrum matched uniquely.\n",
+            "failedVariables": "All OK",
+            "steps": [
+                {
+                    "StepNumber": "1 / 4",
+                    "satisfied3": false,
+                    "workOnLineWidthInMiliSec": 1,
+                    "workOnLineWith3": "δ(14) is NOT satisfactory qualityl.m5NScalPro (0 < 0.99 )",
+                    "z_allcheckedvariablesOK_after": false,
+                    "z_allcheckedvariablesOK_before": false
+                },
+                {
+                    "StepNumber": "2 / 4",
+                    "satisfied0": false,
+                    "workOnLineWidthInMiliSec": 0,
+                    "workOnLineWith0": "δ(5) is NOT satisfactory qualityl.m5NScalPro (0 < 0.99 )",
+                    "z_allcheckedvariablesOK_after": false,
+                    "z_allcheckedvariablesOK_before": false
+                },
+                {
+                    "StepNumber": "3 / 4",
+                    "listOfVariables": " 1δ 1J : δ(7) J(7-8)",
+                    "mainAlgoCalculationInMiliSec": 413,
+                    "quality_IntegrationFactor_1": "0.0954952",
+                    "quality_lineKurtosis_1": 0.25000011920928955,
+                    "quality_lineOptimized_1": true,
+                    "quality_lineShapeFactor_1": 0.06291906535625458,
+                    "quality_lineShapeLineWidth_1": 0.3718748986721039,
+                    "quality_m5NScalPro_1": 0.9978327933312922,
+                    "quality_proj2_1": 0.9996162271220386,
+                    "satisfied1": true,
+                    "workOnLineWidthInMiliSec": 26,
+                    "workOnLineWith1": "δ(7) is satisfactory qualityl.m5NScalPro (0.997833) > 0.99  Yes δ(7)",
+                    "z_allcheckedvariablesOK_after": false,
+                    "z_allcheckedvariablesOK_before": false
+                },
+                {
+                    "StepNumber": "4 / 4",
+                    "listOfVariables": " 1δ : δ(8)",
+                    "mainAlgoCalculationInMiliSec": 67,
+                    "quality_IntegrationFactor_2": "0.0969427",
+                    "quality_lineKurtosis_2": 0.07500013709068298,
+                    "quality_lineOptimized_2": true,
+                    "quality_lineShapeFactor_2": 0.06236136332154274,
+                    "quality_lineShapeLineWidth_2": 0.3874998986721039,
+                    "quality_m5NScalPro_2": 0.9966704509184663,
+                    "quality_proj2_2": 0.9997386281371652,
+                    "satisfied2": true,
+                    "workOnLineWidthInMiliSec": 26,
+                    "workOnLineWith2": "δ(8) is satisfactory qualityl.m5NScalPro (0.99667) > 0.99  Yes δ(8)",
+                    "z_allcheckedvariablesOK_after": false,
+                    "z_allcheckedvariablesOK_before": false
+                }
+            ],
+            "timeStats": "  - Algorithm 1 (Simulated Annealing) time: 0 s\n    - Line width 1/1 (0.75 Hz) time: 0.455 s\n  - Algorithm 1 (Simulated Annealing) time: 0 s\n    - Line width 1/1 (0.37 Hz) time: 0.546 s\n",
+            "z_log": "\nUZIO   CCCCJJJooo (type of variable: Chemical shift, J coupling or linewidth parameter)\nUZIO_F YYYYYYYnnn\nUZIO_F satisfactory CS : (all!) δ(5) = 8.6, δ(7) = 8.350350367, δ(8) = 7.949763979, δ(14) = 3.95\nUZIO_F satisfactory J : (all!) , J(5-7) = 2.499206543, J(5-8) = 0.1, J(7-8) = 8.544600269"
+        },
+        {
+            "StageText": "last step",
+            "allOK": true,
+            "failedVariables": "All OK",
+            "steps": [
+                {
+                    "StepNumber": "1 / 4",
+                    "satisfied3": false,
+                    "workOnLineWidthInMiliSec": 1,
+                    "workOnLineWith3": "δ(14) is NOT satisfactory qualityl.m5NScalPro (0 < 0.99 )",
+                    "z_allcheckedvariablesOK_after": true,
+                    "z_allcheckedvariablesOK_before": true
+                },
+                {
+                    "StepNumber": "2 / 4",
+                    "satisfied0": false,
+                    "workOnLineWidthInMiliSec": 1,
+                    "workOnLineWith0": "δ(5) is NOT satisfactory qualityl.m5NScalPro (0 < 0.99 )",
+                    "z_allcheckedvariablesOK_after": true,
+                    "z_allcheckedvariablesOK_before": true
+                },
+                {
+                    "StepNumber": "3 / 4",
+                    "satisfied1": false,
+                    "workOnLineWidthInMiliSec": 1,
+                    "workOnLineWith1": "δ(7) is NOT satisfactory qualityl.m5NScalPro (0 < 0.99 )",
+                    "z_allcheckedvariablesOK_after": true,
+                    "z_allcheckedvariablesOK_before": true
+                },
+                {
+                    "StepNumber": "4 / 4",
+                    "satisfied2": false,
+                    "workOnLineWidthInMiliSec": 1,
+                    "workOnLineWith2": "δ(8) is NOT satisfactory qualityl.m5NScalPro (0 < 0.99 )",
+                    "z_allcheckedvariablesOK_after": true,
+                    "z_allcheckedvariablesOK_before": true
+                }
+            ],
+            "timeStats": "  - Algorithm 1 (Simulated Annealing) time: 0 s\n    - Line width 1/1 (0.75 Hz) time: 0.455 s\n  - Algorithm 1 (Simulated Annealing) time: 0 s\n    - Line width 1/1 (0.37 Hz) time: 0.546 s\n  - Algorithm 1 (Simulated Annealing) time: 0 s\n    - Line width 1/1 (0.75 Hz) time: 0.029 s\n",
+            "z_log": "\nUZIO   CCCCJJJooo (type of variable: Chemical shift, J coupling or linewidth parameter)\nUZIO_F YYYYYYYnnn\nUZIO_F satisfactory CS : (all!) δ(5) = 8.6, δ(7) = 8.350350367, δ(8) = 7.949763979, δ(14) = 3.95\nUZIO_F satisfactory J : (all!) , J(5-7) = 2.499206543, J(5-8) = 0.1, J(7-8) = 8.544600269"
+        }
+    ],
+    "titleSpectrum": "SfLd for Mult0: lineWidth=0.37 k=0.28 Quant = 0.0631038 Integ = 0.0954439 (1.295 s) (nb sim:6111+1527) (nb refinement:260+197+1+351+118+109) OK\n alg : Simulated Annealing(S:120 F:0.9 I:10 C:100 S:10 V:1 W:False N:n)\n",
+    "totComputationTimeIncludingGraphicalInterfaceInMiliSec": 1383,
+    "z_fromVarSet": {
+        "network": {
+            "fJGraphColumn": [
+                {
+                    "assigned": true,
+                    "atomIndexArray": [
+                        {
+                            "h": "a",
+                            "index": 5
+                        }
+                    ],
+                    "chemicalShift": 8.600085225219129,
+                    "fQUuid": "{9924ff36-c3c1-4c9b-a39c-81f116d42a6c}",
+                    "indexNetworkArray": [
+                        0
+                    ],
+                    "jInColumnArray": [
+                        {
+                            "assigned": true,
+                            "fValue": 2.495849609375,
+                            "indexPartnerJInColumn": 0,
+                            "indexPartnerjGraphColumn": 1,
+                            "nameCoupling": "J(7-5)",
+                            "nodeNumber": 1
+                        }
+                    ],
+                    "nameChemicalShift": "5",
+                    "nbProton": 1
+                },
+                {
+                    "assigned": true,
+                    "atomIndexArray": [
+                        {
+                            "h": "a",
+                            "index": 7
+                        }
+                    ],
+                    "chemicalShift": 8.350289108468736,
+                    "fQUuid": "{85da9cce-ccb0-41a2-acc1-d8fc71a5d373}",
+                    "indexNetworkArray": [
+                        1
+                    ],
+                    "jInColumnArray": [
+                        {
+                            "assigned": true,
+                            "fValue": 2.5025634765625,
+                            "indexPartnerJInColumn": 0,
+                            "indexPartnerjGraphColumn": 0,
+                            "nameCoupling": "J(7-5)",
+                            "nodeNumber": 1
+                        },
+                        {
+                            "assigned": true,
+                            "fValue": 8.5450439453125,
+                            "indexPartnerJInColumn": 0,
+                            "indexPartnerjGraphColumn": 2,
+                            "nameCoupling": "J(7-8)",
+                            "nodeNumber": 0
+                        }
+                    ],
+                    "nameChemicalShift": "7",
+                    "nbProton": 1
+                },
+                {
+                    "assigned": true,
+                    "atomIndexArray": [
+                        {
+                            "h": "a",
+                            "index": 8
+                        }
+                    ],
+                    "chemicalShift": 7.94980835983138,
+                    "fQUuid": "{7723fa05-bf7a-42bf-b855-fb3b3fdc36d2}",
+                    "indexNetworkArray": [
+                        2
+                    ],
+                    "jInColumnArray": [
+                        {
+                            "assigned": true,
+                            "fValue": 8.5263671875,
+                            "indexPartnerJInColumn": 1,
+                            "indexPartnerjGraphColumn": 1,
+                            "nameCoupling": "J(7-8)",
+                            "nodeNumber": 0
+                        }
+                    ],
+                    "nameChemicalShift": "8",
+                    "nbProton": 1
+                },
+                {
+                    "assigned": true,
+                    "atomIndexArray": [
+                        {
+                            "h": "a",
+                            "index": 14
+                        },
+                        {
+                            "h": "b",
+                            "index": 14
+                        },
+                        {
+                            "h": "c",
+                            "index": 14
+                        }
+                    ],
+                    "chemicalShift": 3.9500093897162065,
+                    "fQUuid": "{32349bb8-251a-4bc5-a32d-11ae59581565}",
+                    "indexNetworkArray": [
+                        3,
+                        3,
+                        3
+                    ],
+                    "jInColumnArray": [
+                    ],
+                    "nameChemicalShift": "14",
+                    "nbProton": 3
+                }
+            ],
+            "fJGraphEdges": [
+                {
+                    "assigned": true,
+                    "atomIndexArray": [
+                        {
+                            "h": "a",
+                            "index": 5
+                        }
+                    ],
+                    "chemicalShift": 8.600085225219129,
+                    "fQUuid": "{9924ff36-c3c1-4c9b-a39c-81f116d42a6c}",
+                    "indexNetworkArray": [
+                        0
+                    ],
+                    "jInColumnArray": [
+                        {
+                            "assigned": true,
+                            "fValue": 2.495849609375,
+                            "indexPartnerJInColumn": 0,
+                            "indexPartnerjGraphColumn": 1,
+                            "nameCoupling": "J(7-5)",
+                            "nodeNumber": 1
+                        }
+                    ],
+                    "nameChemicalShift": "5",
+                    "nbProton": 1
+                },
+                {
+                    "assigned": true,
+                    "atomIndexArray": [
+                        {
+                            "h": "a",
+                            "index": 7
+                        }
+                    ],
+                    "chemicalShift": 8.350289108468736,
+                    "fQUuid": "{85da9cce-ccb0-41a2-acc1-d8fc71a5d373}",
+                    "indexNetworkArray": [
+                        1
+                    ],
+                    "jInColumnArray": [
+                        {
+                            "assigned": true,
+                            "fValue": 2.5025634765625,
+                            "indexPartnerJInColumn": 0,
+                            "indexPartnerjGraphColumn": 0,
+                            "nameCoupling": "J(7-5)",
+                            "nodeNumber": 1
+                        },
+                        {
+                            "assigned": true,
+                            "fValue": 8.5450439453125,
+                            "indexPartnerJInColumn": 0,
+                            "indexPartnerjGraphColumn": 2,
+                            "nameCoupling": "J(7-8)",
+                            "nodeNumber": 0
+                        }
+                    ],
+                    "nameChemicalShift": "7",
+                    "nbProton": 1
+                },
+                {
+                    "assigned": true,
+                    "atomIndexArray": [
+                        {
+                            "h": "a",
+                            "index": 8
+                        }
+                    ],
+                    "chemicalShift": 7.94980835983138,
+                    "fQUuid": "{7723fa05-bf7a-42bf-b855-fb3b3fdc36d2}",
+                    "indexNetworkArray": [
+                        2
+                    ],
+                    "jInColumnArray": [
+                        {
+                            "assigned": true,
+                            "fValue": 8.5263671875,
+                            "indexPartnerJInColumn": 1,
+                            "indexPartnerjGraphColumn": 1,
+                            "nameCoupling": "J(7-8)",
+                            "nodeNumber": 0
+                        }
+                    ],
+                    "nameChemicalShift": "8",
+                    "nbProton": 1
+                },
+                {
+                    "assigned": true,
+                    "atomIndexArray": [
+                        {
+                            "h": "a",
+                            "index": 14
+                        },
+                        {
+                            "h": "b",
+                            "index": 14
+                        },
+                        {
+                            "h": "c",
+                            "index": 14
+                        }
+                    ],
+                    "chemicalShift": 3.9500093897162065,
+                    "fQUuid": "{32349bb8-251a-4bc5-a32d-11ae59581565}",
+                    "indexNetworkArray": [
+                        3,
+                        3,
+                        3
+                    ],
+                    "jInColumnArray": [
+                    ],
+                    "nameChemicalShift": "14",
+                    "nbProton": 3
+                }
+            ]
+        },
+        "sourceDataCS": "AssignedUserChemShift",
+        "sourceDataJ": "AssignedCouplingMatchMiniNetwork"
+    }
+}
