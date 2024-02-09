@@ -19,7 +19,7 @@ class DispProxToVal {
 			keys: ["value"],
 			type: ["toCen"],
 			extract: [""],
-			selectionKeyTrue: ["NoFieldSIQ"],
+			selectionKeyTrue: [""],
 		};
 
 		// Override defaults with passed values
@@ -44,7 +44,8 @@ class DispProxToVal {
 		return filteredData
 			.filter(
 				(item) =>
-					item[this.settings.selectionKeyTrue] === true && // This will be false if selectionKeyTrue is not present or not true
+					(this.settings.selectionKeyTrue === "" ||
+						item[this.settings.selectionKeyTrue] === true) &&
 					this.settings.keys.every((key) => key in item)
 			)
 			.map((item) => {
