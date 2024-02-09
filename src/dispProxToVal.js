@@ -43,7 +43,7 @@ class DispProxToVal {
 		return filteredData
 			.filter(
 				(item) =>
-					item.containsSigma === true &&
+					item.containsSigma === true && // This will be false if containsSigma is not present or not true
 					this.settings.keys.every((key) => key in item)
 			)
 			.map((item) => {
