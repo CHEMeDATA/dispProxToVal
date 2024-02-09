@@ -19,7 +19,7 @@ class DispProxToVal {
 			keys: ["value"],
 			type: ["toCen"],
 			extract: [""],
-			selectionKeyTrue: [""],
+			selectionKeyTrue: "",
 		};
 
 		// Override defaults with passed values
