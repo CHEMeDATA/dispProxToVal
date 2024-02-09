@@ -1,0 +1,26 @@
+{
+	"array": [
+		{
+			"containsSigma": true,
+			"labelVarSet": "Toto",
+			"m5NScalPro": 0.9937677347501954,
+			"proj2": 1.0003195001791894
+		},
+		{
+			"containsSigma": true,
+			"labelVarSet": "δ(7)",
+			"m5NScalPro": 0.9978327933312922,
+			"proj2": 0.9996162271220386
+		},
+		{
+			"labelVarSet": "δ(8)",
+			"m5NScalPro": 0.9966704509184663,
+			"proj2": 0.9997386281371652
+		},
+		{
+			"labelVarSet": "δ(14)",
+			"m5NScalPro": 0.9995831937344704,
+			"proj2": 1.0003571721067057
+		}
+	]
+}

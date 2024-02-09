@@ -1,3 +1,4 @@
+</html>
 <!DOCTYPE html>
 <html>
 
@@ -8,11 +9,29 @@
 </head>
 
 <body>
+    <!-- Original SVG Element -->
     <svg id="drawing"></svg>
+    <hr>
+    <!-- Additional SVG Elements for new instances -->
+    <svg id="drawing2"></svg>
+    <hr>
+    <svg id="drawing3"></svg>
 
     <script>
-        const dispQuality = new DispProxToVal("#drawing");
+        // First instance
+         const dispQuality = new DispProxToVal("#drawing");
         dispQuality.init("../data/doubleSeries.json",{types: ["toMax", "toCen"], keys: ["labelVarSet","m5NScalPro","proj2"], extract: "spinFitVariableArray.qualityEachMultiplet", selectionKeyTrue:"containsSigma"});
+   
+        // Second instance
+        const dispQuality2 = new DispProxToVal("#drawing2");
+        dispQuality2.init("../data/simpleSeries.json", { types: ["toMax", "toCen"], 
+        keys: ["labelVarSet", "m5NScalPro", "proj2"], extract: "array", selectionKeyTrue:"containsSigma" });
+
+         // Second instance
+        const dispQuality3 = new DispProxToVal("#drawing3");
+        dispQuality3.init("../data/simpleSeries.json", { types: ["toMax", "toCen"], 
+        keys: ["labelVarSet", "m5NScalPro", "proj2"], extract: "array"});
+
     </script>
 </body>
 
