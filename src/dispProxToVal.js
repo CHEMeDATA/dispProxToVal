@@ -1,77 +1,65 @@
 class DispProxToVal {
 	constructor(selector, width = 50, height = 52) {
-    this.selector = selector;
-    this.width = width;
-    this.height = height;
-    this.svg = d3
-      .select(selector)
-      .attr("width", this.width)
-      .attr("height", this.height);
-    d3.select(selector).style("shape-rendering", "crispEdges");
-  }
+		this.selector = selector;
+		this.width = width;
+		this.height = height;
+		this.svg = d3
+			.select(selector)
+			.attr("width", this.width)
+			.attr("height", this.height);
+		d3.select(selector).style("shape-rendering", "crispEdges");
+	}
 
-  getValueFromPath(obj, path) {
-    return path.split('.').reduce((acc, part) => acc && acc[part], obj);
-  }
+	getValueFromPath(obj, path) {
+		return path.split(".").reduce((acc, part) => acc && acc[part], obj);
+	}
 
-  async init(fileName, options = {}) {
-    const defaults = {
-      keys: ["value"],
-      type: ["toCen"],
-      extract: [""]
-    };
+	async init(fileName, options = {}) {
+		const defaults = {
+			keys: ["value"],
+			type: ["toCen"],
+			extract: [""],
+		};
 
-    // Override defaults with passed values
-    this.settings = { ...defaults, ...options };
+		// Override defaults with passed values
+		this.settings = { ...defaults, ...options };
 
-    try {
-      const data = await d3.json(fileName);
-      if (this.settings.keys.length == 2) {
-        this.data = this.processData(data);
-      } else if (this.settings.keys.length == 3) {
-        this.data = this.processData2(data);
-      }
-      this.draw();
-    } catch (error) {
-      console.error("Error loading the JSON file:", error);
-    }
-  }
+		try {
+			const data = await d3.json(fileName);
+			this.data = this.processData(data);
+			this.draw();
+		} catch (error) {
+			console.error("Error loading the JSON file:", error);
+		}
+	}
+	processData(jsonData) {
+		let filteredData = jsonData;
+		// Apply extraction if specified
+		if (this.settings.extract !== "") {
+			filteredData = this.getValueFromPath(jsonData, this.settings.extract);
+		}
 
-  processData(jsonData) {
-    let filteredData = jsonData;
-    if (this.settings.extract !== "") {
-      filteredData = this.getValueFromPath(jsonData, this.settings.extract);
-    }
-
-    return filteredData
-      .filter((item) => 
-        item.containsSigma === true &&
-        this.settings.keys[0] in item &&
-        this.settings.keys[1] in item
-      )
-      .map((item) => ({
-        dispValue1: item[this.settings.keys[1]],
-        labelVarSet: item[this.settings.keys[0]],
-      }));
-  }
-
-  processData2(jsonData) {
-    let filteredData = jsonData;
-    if (this.settings.extract !== "") {
-      filteredData = this.getValueFromPath(jsonData, this.settings.extract);
-    }
-
-    return filteredData
-      .filter((item) => 
-        item.containsSigma === true &&
-        this.settings.keys.every(key => key in item)
-      )
-      .map((item) => ({
-        dispValue1: item[this.settings.keys[1]],
-        dispValue2: item[this.settings.keys[2]],
-        labelVarSet: item[this.settings.keys[0]],
-      }));
-  }
+		// Dynamically filter and map based on the number of keys
+		return filteredData
+			.filter(
+				(item) =>
+					item.containsSigma === true &&
+					this.settings.keys.every((key) => key in item)
+			)
+			.map((item) => {
+				// Dynamically create the object based on keys
+				const result = {};
+				this.settings.keys.forEach((key, index) => {
+					// Assuming the first key is always for labelVarSet, the rest are for dispValues
+					if (index === 0) {
+						result.labelVarSet = item[key];
+					} else {
+						result[`dispValue${index}`] = item[key];
+					}
+				});
+				return result;
+			});
+	}
 	getColorFromMap(expVal, index = 0) {
 		expVal = Math.max(0, Math.min(expVal, 1.0));
 		const colorMaps = [
@@ -164,8 +152,8 @@ class DispProxToVal {
 	}
 
 	drawFrame(refposX, refposY, totalWidth, totalHeight, is1Max) {
-		const shift_line = is1Max ? 0 : (totalHeight / 2);
-		const shift_text = is1Max ? (totalHeight - 5) : (totalHeight + 2);
+		const shift_line = is1Max ? 0 : totalHeight / 2;
+		const shift_text = is1Max ? totalHeight - 5 : totalHeight + 2;
 
 		this.svg
 			.append("line")
