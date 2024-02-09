@@ -9,35 +9,84 @@ class DispProxToVal {
 			.attr("height", this.height);
 		d3.select(selector).style("shape-rendering", "crispEdges");
 	}
+    async init(fileName, options = {}) {
+      const defaults = {
+      keys: ["value"],
+      type: ["toCen"],
+      extract: [""]
+     };
 
-	async init(fileName) {
-		try {
-			const data = await d3.json(fileName);
-			this.data = this.processData(data);
-			this.draw();
-		} catch (error) {
-			console.error("Error loading the JSON file:", error);
-		}
-	}
+    // Override defaults with passed values
+    this.settings = { ...defaults, ...options };
+    if (this.settings.keys.length == 2) {
+        try {
+            const data = await d3.json(fileName);
+            this.data = this.processData(data);
+            this.draw();
+        } catch (error) {
+            console.error("Error loading the JSON file:", error);
+        }
+    }
+     if (this.settings.keys.length == 3) {
+        try {
+            const data = await d3.json(fileName);
+            this.data = this.processData2(data);
+            this.draw();
+        } catch (error) {
+            console.error("Error loading the JSON file:", error);
+        }
+    }
+    }
 
-	processData(jsonData) {
-		const qualityEachMultiplet =
-			jsonData.spinFitVariableArray.qualityEachMultiplet;
-		return qualityEachMultiplet
+	processData2(jsonData) {
+
+        function getValueFromPath(obj, path) {
+          return path.split('.').reduce((acc, part) => acc && acc[part], obj);
+        }
+        let filteredData = jsonData;
+        if (this.settings.extract != "") {
+            filteredData = getValueFromPath(jsonData, this.settings.extract);
+        }
+
+		return filteredData
 			.filter(
 				(item) =>
 					item.containsSigma === true &&
-					"m5NScalPro" in item &&
-					"proj2" in item &&
-					"labelVarSet" in item
+					this.settings.keys[0] in item &&
+					this.settings.keys[1] in item &&
+					this.settings.keys[2] in item
 			)
 			.map((item) => ({
-				m5NScalPro: item.m5NScalPro,
-				proj2: item.proj2,
-				labelVarSet: item.labelVarSet,
+				dispValue1: item[this.settings.keys[1]],
+				dispValue2: item[this.settings.keys[2]],
+				labelVarSet: item[this.settings.keys[0]],
 			}));
 	}
 
+
+// Using the function to dynamically access the property
+
+    processData(jsonData) {
+        function getValueFromPath(obj, path) {
+          return path.split('.').reduce((acc, part) => acc && acc[part], obj);
+        }
+        let filteredData = jsonData;
+        if (this.settings.extract != "") {
+            filteredData = getValueFromPath(jsonData, this.settings.extract);
+        }
+
+		return filteredData
+			.filter(
+				(item) =>
+					item.containsSigma === true &&
+					this.keys[0] in item &&
+					this.keys[1] in item
+			)
+			.map((item) => ({
+				dispValue1: item[keys[1]],
+				labelVarSet: item[keys[0]],
+			}));
+	}
 	getColorFromMap(expVal, index = 0) {
 		expVal = Math.max(0, Math.min(expVal, 1.0));
 		const colorMaps = [
@@ -165,10 +214,10 @@ class DispProxToVal {
 		const posYsp = 15;
 		const posYproj = posYsp + 18;
 		this.data.forEach((entry, i) => {
-			const { m5NScalPro, proj2, labelVarSet } = entry;
+			const { dispValue1, dispValue2, labelVarSet } = entry;
 
-			this.plot01(posX, posYsp, m5NScalPro, true);
-			this.plot01(posX, posYproj, proj2, false);
+			this.plot01(posX, posYsp, dispValue1, true);
+			this.plot01(posX, posYproj, dispValue2, false);
 
 			let textElem = this.svg
 				.append("text")
