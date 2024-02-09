@@ -16,9 +16,9 @@ class DispProxToVal {
 
 	async init(fileName, options = {}) {
 		const defaults = {
-			keys: ["value"],
-			type: ["toCen"],
-			extract: [""],
+			keys: ["label", "value"],
+			types: ["toCen"],
+			extract: "array",
 			selectionKeyTrue: "",
 		};
 
@@ -32,6 +32,8 @@ class DispProxToVal {
 		} catch (error) {
 			console.error("Error loading the JSON file:", error);
 		}
+		this.numberGraphVertical = this.settings.keys.length;
+		this.settings.numberGraphVertical = this.settings.keys.length;
 	}
 	processData(jsonData) {
 		let filteredData = jsonData;
@@ -188,12 +190,24 @@ class DispProxToVal {
 		let posX = 0;
 		const posYsp = 15;
 		const posYproj = posYsp + 18;
+
+
 		this.data.forEach((entry, i) => {
+        console.log("Value of numberGraphVertical :" + this.numberGraphVertical);
+      console.log("Value of settings :" + this.settings.types);
+        console.log("Value of settings :" + this.settings.types.length);
+
 			const { dispValue1, dispValue2, labelVarSet } = entry;
 
-			this.plot01(posX, posYsp, dispValue1, true);
-			this.plot01(posX, posYproj, dispValue2, false);
+			// Determine if the first element of this.settings.type is "toCen"
+			const isToCen1 = this.settings.types[0] === "toMax";
+			const isToCen2 = this.settings.types[1] === "toMax";
 
+			// Call plot01 with isToCen determining the last parameter
+			this.plot01(posX, posYsp, dispValue1, isToCen1);
+			if (this.settings.types.length > 1) {
+				this.plot01(posX, posYproj, dispValue2, isToCen2); // Assuming you want to keep this as false
+			}
 			let textElem = this.svg
 				.append("text")
 				.attr("x", posX)

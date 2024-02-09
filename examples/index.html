@@ -5,7 +5,7 @@
 <head>
     <title>D3 Drawing Example</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/CHEMeDATA/dispProxToVal@0.0.2/src/dispProxToVal.js"></script>
+    <script src="../src/dispProxToVal.js"></script>
 </head>
 
 <body>
@@ -16,7 +16,10 @@
     <svg id="drawing2"></svg>
     <hr>
     <svg id="drawing3"></svg>
-
+ <hr>
+    <svg id="drawing4"></svg>
+<hr>
+    <svg id="drawing5"></svg>
     <script>
         // First instance
          const dispQuality = new DispProxToVal("#drawing");
@@ -27,10 +30,17 @@
         dispQuality2.init("../data/simpleSeries.json", { types: ["toMax", "toCen"], 
         keys: ["labelVarSet", "m5NScalPro", "proj2"], extract: "array", selectionKeyTrue:"containsSigma" });
 
-         // Second instance
+         // Third instance
         const dispQuality3 = new DispProxToVal("#drawing3");
         dispQuality3.init("../data/simpleSeries.json", { types: ["toMax", "toCen"], 
         keys: ["labelVarSet", "m5NScalPro", "proj2"], extract: "array"});
+
+          // Forth instance
+        const dispQuality4 = new DispProxToVal("#drawing4");
+        dispQuality4.init("../data/oneSeries.json", {extract: "array", types: ["toMax"]});
+   // Forth instance
+        const dispQuality5 = new DispProxToVal("#drawing5");
+        dispQuality5.init("../data/oneSeries.json", {extract: "array", types: ["toCen"]});
 
     </script>
 </body>
