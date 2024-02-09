@@ -1,92 +1,77 @@
 class DispProxToVal {
 	constructor(selector, width = 50, height = 52) {
-		this.selector = selector;
-		this.width = width;
-		this.height = height;
-		this.svg = d3
-			.select(selector)
-			.attr("width", this.width)
-			.attr("height", this.height);
-		d3.select(selector).style("shape-rendering", "crispEdges");
-	}
-    async init(fileName, options = {}) {
-      const defaults = {
+    this.selector = selector;
+    this.width = width;
+    this.height = height;
+    this.svg = d3
+      .select(selector)
+      .attr("width", this.width)
+      .attr("height", this.height);
+    d3.select(selector).style("shape-rendering", "crispEdges");
+  }
+
+  getValueFromPath(obj, path) {
+    return path.split('.').reduce((acc, part) => acc && acc[part], obj);
+  }
+
+  async init(fileName, options = {}) {
+    const defaults = {
       keys: ["value"],
       type: ["toCen"],
       extract: [""]
-     };
+    };
 
     // Override defaults with passed values
     this.settings = { ...defaults, ...options };
-    if (this.settings.keys.length == 2) {
-        try {
-            const data = await d3.json(fileName);
-            this.data = this.processData(data);
-            this.draw();
-        } catch (error) {
-            console.error("Error loading the JSON file:", error);
-        }
+
+    try {
+      const data = await d3.json(fileName);
+      if (this.settings.keys.length == 2) {
+        this.data = this.processData(data);
+      } else if (this.settings.keys.length == 3) {
+        this.data = this.processData2(data);
+      }
+      this.draw();
+    } catch (error) {
+      console.error("Error loading the JSON file:", error);
     }
-     if (this.settings.keys.length == 3) {
-        try {
-            const data = await d3.json(fileName);
-            this.data = this.processData2(data);
-            this.draw();
-        } catch (error) {
-            console.error("Error loading the JSON file:", error);
-        }
-    }
+  }
+
+  processData(jsonData) {
+    let filteredData = jsonData;
+    if (this.settings.extract !== "") {
+      filteredData = this.getValueFromPath(jsonData, this.settings.extract);
     }
 
-	processData2(jsonData) {
+    return filteredData
+      .filter((item) => 
+        item.containsSigma === true &&
+        this.settings.keys[0] in item &&
+        this.settings.keys[1] in item
+      )
+      .map((item) => ({
+        dispValue1: item[this.settings.keys[1]],
+        labelVarSet: item[this.settings.keys[0]],
+      }));
+  }
 
-        function getValueFromPath(obj, path) {
-          return path.split('.').reduce((acc, part) => acc && acc[part], obj);
-        }
-        let filteredData = jsonData;
-        if (this.settings.extract != "") {
-            filteredData = getValueFromPath(jsonData, this.settings.extract);
-        }
+  processData2(jsonData) {
+    let filteredData = jsonData;
+    if (this.settings.extract !== "") {
+      filteredData = this.getValueFromPath(jsonData, this.settings.extract);
+    }
 
-		return filteredData
-			.filter(
-				(item) =>
-					item.containsSigma === true &&
-					this.settings.keys[0] in item &&
-					this.settings.keys[1] in item &&
-					this.settings.keys[2] in item
-			)
-			.map((item) => ({
-				dispValue1: item[this.settings.keys[1]],
-				dispValue2: item[this.settings.keys[2]],
-				labelVarSet: item[this.settings.keys[0]],
-			}));
-	}
-
-
-// Using the function to dynamically access the property
-
-    processData(jsonData) {
-        function getValueFromPath(obj, path) {
-          return path.split('.').reduce((acc, part) => acc && acc[part], obj);
-        }
-        let filteredData = jsonData;
-        if (this.settings.extract != "") {
-            filteredData = getValueFromPath(jsonData, this.settings.extract);
-        }
-
-		return filteredData
-			.filter(
-				(item) =>
-					item.containsSigma === true &&
-					this.keys[0] in item &&
-					this.keys[1] in item
-			)
-			.map((item) => ({
-				dispValue1: item[keys[1]],
-				labelVarSet: item[keys[0]],
-			}));
-	}
+    return filteredData
+      .filter((item) => 
+        item.containsSigma === true &&
+        this.settings.keys.every(key => key in item)
+      )
+      .map((item) => ({
+        dispValue1: item[this.settings.keys[1]],
+        dispValue2: item[this.settings.keys[2]],
+        labelVarSet: item[this.settings.keys[0]],
+      }));
+  }
 	getColorFromMap(expVal, index = 0) {
 		expVal = Math.max(0, Math.min(expVal, 1.0));
 		const colorMaps = [
