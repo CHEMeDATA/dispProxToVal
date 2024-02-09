@@ -138,7 +138,7 @@ class DispProxToVal {
 				.append("rect")
 				.attr("x", Math.round(refposX + i * width))
 				.attr("y", refposY + heightCurBlockC - shiftUpBlock - heightCurBlock)
-				.attr("width", width)
+				.attr("width", Math.round(width))
 				.attr("height", heightCurBlock)
 				.attr("fill", this.getColorFromMap(value0to1, colorCodeCode))
 				.attr("stroke", "black")
