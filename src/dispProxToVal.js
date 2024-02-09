@@ -108,20 +108,19 @@ class DispProxToVal {
 		return result.padStart(2, "0");
 	}
 
-	plot01(refposX = 0, refposY = 0, ratio = 0.9937, is1Max = true) {
+	plot01(refposX = 0, refposY = 0, ratio = 0.9937, is1Max = true, numberSteps = 3, width = 3) {
 		const stroke_width = 1;
 		let ratioDispData = [];
 		if (!is1Max) {
-			for (let i = 0; i < 3; i++) {
+			for (let i = 0; i < numberSteps; i++) {
 				ratioDispData.push((ratio - 1.0) * Math.pow(10.0, i));
 			}
 		} else {
-			for (let i = 0; i < 3; i++) {
+			for (let i = 0; i < numberSteps; i++) {
 				ratioDispData.push((1.0 - ratio) * Math.pow(10.0, i));
 			}
 		}
 
-		const width = 3;
 		const heightCurBlockC = 14;
 		let heightCurBlock = heightCurBlockC;
 
@@ -137,7 +136,7 @@ class DispProxToVal {
 
 			this.svg
 				.append("rect")
-				.attr("x", refposX + i * width)
+				.attr("x", Math.round(refposX + i * width))
 				.attr("y", refposY + heightCurBlockC - shiftUpBlock - heightCurBlock)
 				.attr("width", width)
 				.attr("height", heightCurBlock)
@@ -147,7 +146,7 @@ class DispProxToVal {
 		});
 
 		this.drawFrame(
-			refposX,
+			Math.round(refposX),
 			refposY,
 			ratioDispData.length * width,
 			heightCurBlockC,
@@ -193,10 +192,6 @@ class DispProxToVal {
 
 
 		this.data.forEach((entry, i) => {
-        console.log("Value of numberGraphVertical :" + this.numberGraphVertical);
-      console.log("Value of settings :" + this.settings.types);
-        console.log("Value of settings :" + this.settings.types.length);
-
 			const { dispValue1, dispValue2, labelVarSet } = entry;
 
 			// Determine if the first element of this.settings.type is "toCen"
@@ -204,10 +199,10 @@ class DispProxToVal {
 			const isToCen2 = this.settings.types[1] === "toMax";
 
 			// Call plot01 with isToCen determining the last parameter
-			this.plot01(posX, posYsp, dispValue1, isToCen1);
-			if (this.settings.types.length > 1) {
-				this.plot01(posX, posYproj, dispValue2, isToCen2); // Assuming you want to keep this as false
-			}
+			const numberSteps = 3;
+			const width = 3; // width in pt
+			const totalWidthInPt = numberSteps * width + 8;
+
 			let textElem = this.svg
 				.append("text")
 				.attr("x", posX)
@@ -218,7 +213,25 @@ class DispProxToVal {
 				.attr("font-weight", "bold");
 
 			let bbox = textElem.node().getBBox();
-			posX += bbox.width + 3;
+			let smallestValue = Math.max(bbox.width, totalWidthInPt);
+			let additionalShift = 0;
+			if (bbox.width > totalWidthInPt) {
+				additionalShift = Math.round((bbox.width - totalWidthInPt) / 2.0);
+			}
+
+			this.plot01(
+				posX + additionalShift,
+				posYsp,
+				dispValue1,
+				isToCen1,
+				numberSteps,
+				width
+			);
+			if (this.settings.types.length > 1) {
+				this.plot01(posX + additionalShift, posYproj, dispValue2, isToCen2); // Assuming you want to keep this as false
+			}
+
+			posX += smallestValue + 3;
 		});
 		this.svg.attr("width", posX - 3).attr("height", this.height);
 	}

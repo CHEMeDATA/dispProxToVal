@@ -16,31 +16,40 @@
     <svg id="drawing2"></svg>
     <hr>
     <svg id="drawing3"></svg>
- <hr>
+    <hr>
     <svg id="drawing4"></svg>
-<hr>
+    <hr>
     <svg id="drawing5"></svg>
+    <hr>
+    <svg id="drawing6"></svg>
     <script>
         // First instance
-         const dispQuality = new DispProxToVal("#drawing");
-        dispQuality.init("../data/doubleSeries.json",{types: ["toMax", "toCen"], keys: ["labelVarSet","m5NScalPro","proj2"], extract: "spinFitVariableArray.qualityEachMultiplet", selectionKeyTrue:"containsSigma"});
-   
+        const dispQuality = new DispProxToVal("#drawing");
+        dispQuality.init("../data/doubleSeries.json", { types: ["toMax", "toCen"], keys: ["labelVarSet", "m5NScalPro", "proj2"], extract: "spinFitVariableArray.qualityEachMultiplet", selectionKeyTrue: "containsSigma" });
+
         // Second instance
         const dispQuality2 = new DispProxToVal("#drawing2");
-        dispQuality2.init("../data/simpleSeries.json", { types: ["toMax", "toCen"], 
-        keys: ["labelVarSet", "m5NScalPro", "proj2"], extract: "array", selectionKeyTrue:"containsSigma" });
+        dispQuality2.init("../data/simpleSeries.json", {
+            types: ["toMax", "toCen"],
+            keys: ["labelVarSet", "m5NScalPro", "proj2"], extract: "array", selectionKeyTrue: "containsSigma"
+        });
 
-         // Third instance
+        // Third instance
         const dispQuality3 = new DispProxToVal("#drawing3");
-        dispQuality3.init("../data/simpleSeries.json", { types: ["toMax", "toCen"], 
-        keys: ["labelVarSet", "m5NScalPro", "proj2"], extract: "array"});
+        dispQuality3.init("../data/simpleSeries.json", {
+            types: ["toMax", "toCen"],
+            keys: ["labelVarSet", "m5NScalPro", "proj2"], extract: "array"
+        });
 
-          // Forth instance
+        // Forth instance
         const dispQuality4 = new DispProxToVal("#drawing4");
-        dispQuality4.init("../data/oneSeries.json", {extract: "array", types: ["toMax"]});
-   // Forth instance
+        dispQuality4.init("../data/oneSeries.json", { extract: "array", types: ["toMax"] });
+        // Forth instance
         const dispQuality5 = new DispProxToVal("#drawing5");
-        dispQuality5.init("../data/oneSeries.json", {extract: "array", types: ["toCen"]});
+        dispQuality5.init("../data/oneSeries.json", { extract: "array", types: ["toCen"] });
+        // Forth instance
+        const dispQuality6 = new DispProxToVal("#drawing6");
+        dispQuality6.init("../data/singleton.json");
 
     </script>
 </body>
