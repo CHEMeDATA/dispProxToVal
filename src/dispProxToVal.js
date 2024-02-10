@@ -13,28 +13,43 @@ class DispProxToVal {
 	getValueFromPath(obj, path) {
 		return path.split(".").reduce((acc, part) => acc && acc[part], obj);
 	}
+  
+    async init(fileName, options = {}) {
+        const data = await d3.json(fileName).catch(error => {
+            console.error("Error loading the JSON file:", error);
+            return null; // Ensure null is returned to avoid further processing
+        });
 
-	async init(fileName, options = {}) {
-		const defaults = {
-			keys: ["label", "value"],
-			types: ["toCen"],
-			extract: "array",
-			selectionKeyTrue: "",
-		};
+        if (data) {
+            this.initialize(data, options);
+        }
+    }
 
-		// Override defaults with passed values
-		this.settings = { ...defaults, ...options };
+    async initJson(jsonData, options = {}) {
+        this.initialize(jsonData, options);
+    }
 
-		try {
-			const data = await d3.json(fileName);
-			this.data = this.processData(data);
-			this.draw();
-		} catch (error) {
-			console.error("Error loading the JSON file:", error);
-		}
-		this.numberGraphVertical = this.settings.keys.length;
-		this.settings.numberGraphVertical = this.settings.keys.length;
-	}
+    initialize(data, options = {}) {
+        const defaults = {
+            keys: ["label", "value"],
+            types: ["toCen"],
+            extract: "array",
+            selectionKeyTrue: "",
+        };
+
+        // Override defaults with passed values
+        this.settings = { ...defaults, ...options };
+        this.numberGraphVertical = this.settings.keys.length;
+        this.settings.numberGraphVertical = this.settings.keys.length;
+
+        try {
+            this.data = this.processData(data);
+            this.draw();
+        } catch (error) {
+            console.error("Error initializing with data:", error);
+        }
+    }
+
 	processData(jsonData) {
 		let filteredData = jsonData;
 		// Apply extraction if specified

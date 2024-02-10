@@ -1,0 +1,32 @@
+</html>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>D3 Drawing Example</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="../src/dispProxToVal.js"></script>
+</head>
+
+<body>
+    <!-- Original SVG Element -->
+    <svg id="drawing"></svg>
+     <script>
+       
+ const dispQuality = new DispProxToVal("#drawing");
+        dispQuality.init("../data/singleton.json");
+   
+    </script>
+    <hr>
+    <svg id="drawing2"></svg>
+     <script>
+       
+ const dispQuality2 = new DispProxToVal("#drawing2");
+
+        dispQuality2.initJson({"array":[{"label":"ff","value":0.1937677347501954}]});
+   
+    </script>
+   
+</body>
+
+</html>
