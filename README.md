@@ -1,7 +1,6 @@
 ## Current Version
 
-v0.0.4
-
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/chemedata/dispProxToVal?latest)
 # dispProxToVal
  The d3 class allows to display in a graphical manner how close a value is to a reference one.
 

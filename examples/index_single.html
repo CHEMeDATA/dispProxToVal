@@ -5,28 +5,97 @@
 <head>
     <title>D3 Drawing Example</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/CHEMeDATA/dispProxToVal@0.0.4/src/dispProxToVal.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/CHEMeDATA/dispProxToVal@latest/src/dispProxToVal.js"></script>
 </head>
 
 <body>
-    <!-- Original SVG Element -->
-    <svg id="drawing"></svg>
-     <script>
-       
- const dispQuality = new DispProxToVal("#drawing");
-        dispQuality.init("../data/singleton.json");
-   
-    </script>
-    <hr>
-    <svg id="drawing2"></svg>
-     <script>
-       
- const dispQuality2 = new DispProxToVal("#drawing2");
+    <table>
+        <tr>
+            <th>Parameters</th>
+            <th>Output</th>
+        </tr>
+        <tr>
+            <td>{ "array": [{ "label": "ff", "value": 0.999 }] }</td>
+            <td>
+                <svg id="drawing3"></svg>
+                <script>
+                    const dispQuality3 = new DispProxToVal("#drawing3");
 
-        dispQuality2.initJson({"array":[{"label":"ff","value":0.1937677347501954}]},{types: ["toMax"]});
-   
+                    dispQuality3.initJson({ "array": [{ "label": "ff", "value": 0.999 }] }, { types: ["toMax"] });
+
+                </script>
+            </td>
+        </tr>
+        <tr>
+            <td>{"array":[{"label":"ff","value":0.1937677347501954}]},{types:["toMax"]}</td>
+            <td>
+                <svg id="drawing2"></svg>
+                <script>
+                    const dispQuality2 = new DispProxToVal("#drawing2");
+                    dispQuality2.initJson({ "array": [{ "label": "ff", "value": 0.1937677347501954 }] }, { types: ["toMax"] });
+                </script>
+            </td>
+        </tr>
+        <tr>
+            <td>{"array":[{"label":"ff","value":1.0001]},{types:["toCen"]}</td>
+            <td>
+                <svg id="drawing4"></svg>
+                <script>
+                    const dispQuality4 = new DispProxToVal("#drawing4");
+                    dispQuality4.initJson({ "array": [{ "label": "ff", "value": 1.0001 }] }, { types: ["toCen"] });
+                </script>
+            </td>
+        </tr>
+        <tr>
+            <td>{"array":[{"label":"ff","value":1.001]},{types:["toCen"]}</td>
+            <td>
+                <svg id="drawing5"></svg>
+                <script>
+                    const drawing5 = new DispProxToVal("#drawing5");
+                    drawing5.initJson({ "array": [{ "label": "ff", "value": 1.001 }] }, { types: ["toCen"] });
+                </script>
+            </td>
+        </tr>
+        <tr>
+            <td>{"array":[{"label":"ff","value":1.01]},{types:["toCen"]}</td>
+            <td>
+                <svg id="drawing6"></svg>
+                <script>
+                    const drawing6 = new DispProxToVal("#drawing6");
+                    drawing6.initJson({ "array": [{ "label": "ff", "value": 1.01 }] }, { types: ["toCen"] });
+                </script>
+            </td>
+        </tr>
+        <tr>
+            <td>{"array":[{"label":"ff","value":1.]},{types:["toCen"]}</td>
+            <td>
+                <svg id="drawing7"></svg>
+                <script>
+                    const drawing7 = new DispProxToVal("#drawing7");
+                    drawing7.initJson({ "array": [{ "label": "ff", "value": 1.1 }] }, { types: ["toCen"] });
+                </script>
+            </td>
+        </tr>
+        <tr>
+            <td>{"array":[{"label":"ff","value":2.]},{types:["toCen"]}</td>
+            <td>
+                <svg id="drawing8"></svg>
+                <script>
+                    const drawing8 = new DispProxToVal("#drawing8");
+                    drawing8.initJson({ "array": [{ "label": "ff", "value": 2.0 }] }, { types: ["toCen"] });
+                </script>
+            </td>
+        </tr>
+    </table>
+    <!-- Original SVG Element -->
+
+    <hr>
+    <svg id="drawing"></svg>
+    <script>
+        const dispQuality = new DispProxToVal("#drawing");
+        dispQuality.init("../data/singleton.json");
     </script>
-   
+
 </body>
 
 </html>
