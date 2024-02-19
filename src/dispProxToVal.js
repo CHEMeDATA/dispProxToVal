@@ -206,7 +206,9 @@ class DispProxToVal {
 					console.log("click");
 					if (this.JmolAppletA !== undefined && this.JmolAppletA !== null) {
 							console.log('Molecule : ' + this.JmolAppletA)
-							Jmol.script(this.JmolAppletA,"select atomno = 0;color [127,255,127];spacefill 80");
+							// Jmol.script(this.JmolAppletA,"select atomno = 0;color [127,255,127];spacefill 80");
+							jmolScript("select atomno = 1 or atomno = 2;color [0,255,0]", this.JmolAppletA)
+   							//jmolScript("select atomno = 1 or atomno = 2;color cpk", "A0")
 					} else {
 						console.log('No molecule to highlight')
 					}
