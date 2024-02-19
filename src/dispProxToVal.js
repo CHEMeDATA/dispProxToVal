@@ -1,5 +1,6 @@
 class DispProxToVal {
-	constructor(selector, width = 50, height = 52) {
+	constructor(selector, JmolAppletA, width = 50, height = 52) {
+		this.JmolAppletA = JmolAppletA;
 		this.selector = selector;
 		this.width = width;
 		this.height = height;
@@ -146,13 +147,13 @@ class DispProxToVal {
 			value0to1 = Math.max(0, Math.min(value0to1, 1.0));
 
 			const space = heightCurBlockC - heightCurBlock;
-			const shiftUpBlock = Math.round(space * value0to1);
-			let colorCodeCode = !is1Max ? 4 : 3;
+			const shiftUpBlock = space * value0to1;
+			const colorCodeCode = is1Max ? 3 : 4;
 
 			this.svg
 				.append("rect")
 				.attr("x", Math.round(refposX + i * width))
-				.attr("y", refposY + heightCurBlockC - shiftUpBlock - heightCurBlock)
+				.attr("y", Math.round(refposY + heightCurBlockC - shiftUpBlock - heightCurBlock))
 				.attr("width", Math.round(width))
 				.attr("height", heightCurBlock)
 				.attr("fill", this.getColorFromMap(value0to1, colorCodeCode))
@@ -160,45 +161,98 @@ class DispProxToVal {
 				.attr("stroke-width", stroke_width);
 		});
 
-		this.drawFrame(
-			Math.round(refposX),
+		const widhtOfScaleArea = this.drawScale(
+			Math.round(refposX + ratioDispData.length * width),
 			refposY,
-			ratioDispData.length * width,
 			heightCurBlockC,
 			is1Max
 		);
+		const fullwidthHiddenBox = ratioDispData.length * width + widhtOfScaleArea;
+		// Assume your visible rectangles are already drawn
+
+		// Calculate the bounds for the invisible rectangle
+		const bounds = {
+		  x: refposX,
+		  y: refposY,
+		  width: fullwidthHiddenBox,
+		  height: heightCurBlockC
+		};
+
+		var tooltip = d3.select("#tooltip");
+
+		if (tooltip.empty()) {
+			// If the tooltip doesn't exist, log an informative message
+			console.log(
+				'The tooltip div is missing. Please include the following HTML snippet in your document: <div id="tooltip" style="position: absolute; visibility: hidden; padding: 8px; background-color: white; border: 1px solid #ccc; border-radius: 5px; pointer-events: none; z-index: 10;"></div>'
+			);
+		} else {
+			this.svg
+				.append("rect")
+				.attr("x", bounds.x)
+				.attr("y", bounds.y)
+				.attr("width", bounds.width)
+				.attr("height", bounds.height)
+				.attr("fill", "none")
+				.attr("pointer-events", "all")
+				.on("mouseover", function () {
+					tooltip.style("visibility", "visible");
+				})
+				.on("mousemove", function (event) {
+					tooltip
+						.text(ratio) // Update this based on the data or element
+						.style("left", event.pageX + 10 + "px") // Position tooltip to the right of the cursor
+						.style("top", event.pageY + 10 + "px"); // Position tooltip below the cursor
+				}).on("click", function (event) {
+					console.log("click");
+					if (this.JmolAppletA !== undefined && this.JmolAppletA !== null) {
+							console.log('Molecule : ' + this.JmolAppletA)
+							Jmol.script(this.JmolAppletA,"select atomno = 0;color [127,255,127];spacefill 80");
+					} else {
+						console.log('No molecule to highlight')
+					}
+				})
+				.on("mouseout", function () {
+					tooltip.style("visibility", "hidden");
+				});
+		}
+
+
 	}
 
-	drawFrame(refposX, refposY, totalWidth, totalHeight, is1Max) {
+	drawScale(refposX, refposY, totalWidth, totalHeight, is1Max) {
+		const lengthHorizontalTic = 3
 		const shift_line = is1Max ? 0 : totalHeight / 2;
 		const shift_text = is1Max ? totalHeight - 5 : totalHeight + 2;
-
+		//horizontal line
 		this.svg
 			.append("line")
-			.attr("x1", refposX + totalWidth)
+			.attr("x1", refposX)
 			.attr("y1", refposY + shift_line)
-			.attr("x2", refposX + totalWidth + 3)
+			.attr("x2", refposX + lengthHorizontalTic)
 			.attr("y2", refposY + shift_line)
 			.attr("stroke", "black")
 			.attr("stroke-width", 1);
 
 		this.svg
 			.append("line")
-			.attr("x1", refposX + totalWidth)
+			.attr("x1", refposX)
 			.attr("y1", refposY)
-			.attr("x2", refposX + totalWidth)
+			.attr("x2", refposX)
 			.attr("y2", refposY + totalHeight + 1)
 			.attr("stroke", "black")
 			.attr("stroke-width", 1);
 
-		this.svg
+		let textElem = this.svg
 			.append("text")
-			.attr("x", refposX + totalWidth + 3)
+			.attr("x", refposX + lengthHorizontalTic)
 			.attr("y", refposY + shift_text)
 			.text("1")
 			.attr("font-size", "10px")
 			.attr("font-family", "Helvetica")
 			.attr("font-weight", "bold");
+		const bboxWidth = textElem.node().getBBox().width;
+		const widhtOfScaleArea = bboxWidth + lengthHorizontalTic;
+		return widhtOfScaleArea
 	}
 	draw() {
 		let posX = 0;
@@ -245,8 +299,8 @@ class DispProxToVal {
 			if (this.settings.types.length > 1) {
 				this.plot01(posX + additionalShift, posYproj, dispValue2, isToCen2); // Assuming you want to keep this as false
 			}
-
-			posX += smallestValue + 3;
+			// shift the position for next one...		
+			posX += smallestValue + 3; 
 		});
 		this.svg.attr("width", posX - 3).attr("height", this.height);
 	}
