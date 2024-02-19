@@ -186,6 +186,7 @@ class DispProxToVal {
 				'The tooltip div is missing. Please include the following HTML snippet in your document: <div id="tooltip" style="position: absolute; visibility: hidden; padding: 8px; background-color: white; border: 1px solid #ccc; border-radius: 5px; pointer-events: none; z-index: 10;"></div>'
 			);
 		} else {
+			const self = this;
 			this.svg
 				.append("rect")
 				.attr("x", bounds.x)
@@ -196,6 +197,9 @@ class DispProxToVal {
 				.attr("pointer-events", "all")
 				.on("mouseover", function () {
 					tooltip.style("visibility", "visible");
+					if (self.JmolAppletA !== undefined && self.JmolAppletA !== null) {
+							jmolScript("select atomno = 1 or atomno = 2;color [0,255,0];", self.JmolAppletA)
+					} 
 				})
 				.on("mousemove", function (event) {
 					tooltip
@@ -203,18 +207,15 @@ class DispProxToVal {
 						.style("left", event.pageX + 10 + "px") // Position tooltip to the right of the cursor
 						.style("top", event.pageY + 10 + "px"); // Position tooltip below the cursor
 				}).on("click", function (event) {
-					console.log("click");
-					if (this.JmolAppletA !== undefined && this.JmolAppletA !== null) {
-							console.log('Molecule : ' + this.JmolAppletA)
-							// Jmol.script(this.JmolAppletA,"select atomno = 0;color [127,255,127];spacefill 80");
-							jmolScript("select atomno = 1 or atomno = 2;color [0,255,0]", this.JmolAppletA)
-   							//jmolScript("select atomno = 1 or atomno = 2;color cpk", "A0")
-					} else {
-						console.log('No molecule to highlight')
-					}
+					if (self.JmolAppletA !== undefined && self.JmolAppletA !== null) {
+							jmolScript("select atomno = 1 or atomno = 2;color [0,255,255]", self.JmolAppletA)
+					} 
 				})
 				.on("mouseout", function () {
 					tooltip.style("visibility", "hidden");
+					if (self.JmolAppletA !== undefined && self.JmolAppletA !== null) {
+							jmolScript("select atomno = 1 or atomno = 2;color cpk", self.JmolAppletA)
+					} 
 				});
 		}
 
