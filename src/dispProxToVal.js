@@ -36,6 +36,7 @@ class DispProxToVal {
             types: ["toCen"],
             extract: "array",
             selectionKeyTrue: "",
+            atomNumberKey: "molAtomIndices",
         };
 
         // Override defaults with passed values
@@ -69,6 +70,7 @@ class DispProxToVal {
 			.map((item) => {
 				// Dynamically create the object based on keys
 				const result = {};
+        result.molAtomIndices = item[this.settings.atomNumberKey];
 				this.settings.keys.forEach((key, index) => {
 					// Assuming the first key is always for labelVarSet, the rest are for dispValues
 					if (index === 0) {
@@ -124,7 +126,8 @@ class DispProxToVal {
 		return result.padStart(2, "0");
 	}
 
-	plot01(refposX = 0, refposY = 0, ratio = 0.9937, is1Max = true, numberSteps = 3, width = 3) {
+	plot01(refposX = 0, refposY = 0, ratio = 0.9937,  molAtomIndices = [], is1Max = true, numberSteps = 3, width = 3) {
+     
 		const stroke_width = 1;
 		let ratioDispData = [];
 		if (!is1Max) {
@@ -187,6 +190,7 @@ class DispProxToVal {
 			);
 		} else {
 			const self = this;
+			 
 			this.svg
 				.append("rect")
 				.attr("x", bounds.x)
@@ -198,7 +202,10 @@ class DispProxToVal {
 				.on("mouseover", function () {
 					tooltip.style("visibility", "visible");
 					if (self.JmolAppletA !== undefined && self.JmolAppletA !== null) {
-							jmolScript("select atomno = 1 or atomno = 2;color [0,255,0];", self.JmolAppletA)
+						for (let i =0;i < molAtomIndices.length; i++) {
+              console.log("select atomno = " + molAtomIndices[i]);
+							jmolScript("select atomno = " + (molAtomIndices[i] + 1) + " ;color [0,255,0]", self.JmolAppletA);
+						}
 					} 
 				})
 				.on("mousemove", function (event) {
@@ -208,13 +215,19 @@ class DispProxToVal {
 						.style("top", event.pageY + 10 + "px"); // Position tooltip below the cursor
 				}).on("click", function (event) {
 					if (self.JmolAppletA !== undefined && self.JmolAppletA !== null) {
-							jmolScript("select atomno = 1 or atomno = 2;color [0,255,255]", self.JmolAppletA)
+						for (let i =0;i < molAtomIndices.length; i++) {
+							jmolScript("select atomno = " + (molAtomIndices[i] + 1) + " ;color [0,255,255]", self.JmolAppletA)
+						}
+						//	jmolScript("select atomno = 1 or atomno = 2;color [0,255,255]", self.JmolAppletA)
 					} 
 				})
 				.on("mouseout", function () {
 					tooltip.style("visibility", "hidden");
 					if (self.JmolAppletA !== undefined && self.JmolAppletA !== null) {
-							jmolScript("select atomno = 1 or atomno = 2;color cpk", self.JmolAppletA)
+						for (let i =0;i < molAtomIndices.length; i++) {
+							jmolScript("select atomno = " + (molAtomIndices[i] + 1) + " ;color cpk;", self.JmolAppletA)
+						}
+						//	jmolScript("select atomno = 1 or atomno = 2;color cpk", self.JmolAppletA)
 					} 
 				});
 		}
@@ -264,7 +277,7 @@ class DispProxToVal {
 
 
 		this.data.forEach((entry, i) => {
-			const { dispValue1, dispValue2, labelVarSet } = entry;
+			const { dispValue1, dispValue2, labelVarSet, molAtomIndices } = entry;
 
 			// Determine if the first element of this.settings.type is "toCen"
 			const isToCen1 = this.settings.types[0] === "toMax";
@@ -294,13 +307,14 @@ class DispProxToVal {
 			this.plot01(
 				posX + additionalShift,
 				posYsp,
-				dispValue1,
+				dispValue1, 
+        molAtomIndices,
 				isToCen1,
 				numberSteps,
 				width
 			);
 			if (this.settings.types.length > 1) {
-				this.plot01(posX + additionalShift, posYproj, dispValue2, isToCen2); // Assuming you want to keep this as false
+				this.plot01(posX + additionalShift, posYproj, dispValue2, molAtomIndices, isToCen2); // Assuming you want to keep this as false
 			}
 			// shift the position for next one...		
 			posX += smallestValue + 3; 
