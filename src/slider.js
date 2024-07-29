@@ -14,7 +14,7 @@ class Slider {
 		// Set default options and override with provided options
 		this.options = {
 			min: options.min || 0,
-			max: options.max || 100,
+			max: options.max || 0,
 			step: options.step || 1,
 			initialValue: options.initialValue || 0,
 			width: options.width || "200 pt",
