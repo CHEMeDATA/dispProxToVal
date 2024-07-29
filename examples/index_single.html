@@ -5,11 +5,19 @@
 <head>
     <title>D3 Drawing Example</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
+        <!-- From a file
+
     <script src="https://cdn.jsdelivr.net/gh/CHEMeDATA/dispProxToVal@latest/src/dispProxToVal.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/CHEMeDATA/dispProxToVal@latest/src/slider.js"></script>
+     -->
+    <script src="../src/dispProxToVal.js"></script>
+    <script src="../src/slider.js"></script>
 </head>
 
 <body>
-     <div id="tooltip" style="position: absolute; visibility: hidden; padding: 8px; background-color: white; border: 1px solid #ccc; border-radius: 5px; pointer-events: none; z-index: 10;"></div>
+    <div id="tooltip"
+        style="position: absolute; visibility: hidden; padding: 8px; background-color: white; border: 1px solid #ccc; border-radius: 5px; pointer-events: none; z-index: 10;">
+    </div>
 
     <table>
         <tr>
@@ -78,24 +86,52 @@
                 </script>
             </td>
         </tr>
+        <!-- alternative display -->
         <tr>
-            <td>{"array":[{"label":"ff","value":2.]},{types:["toCen"]}</td>
+            <td>
+                <script>
+                    const jsonData = { "array": [{ "label": "fg", "value": 2.0 }] };
+                    const jsonTypes = { types: ["toCen"] };
+                    document.write(JSON.stringify(jsonData), ",", JSON.stringify(jsonTypes));
+                </script>
+            </td>
             <td>
                 <svg id="drawing8"></svg>
                 <script>
                     const drawing8 = new DispProxToVal("#drawing8");
-                    drawing8.initJson({ "array": [{ "label": "ff", "value": 2.0 }] }, { types: ["toCen"] });
+                    drawing8.initJson(jsonData, jsonTypes);
                 </script>
             </td>
+
         </tr>
     </table>
-    <!-- Original SVG Element -->
-
+    <!-- From a file -->
     <hr>
     <svg id="drawing"></svg>
+        <!-- optional slider to dynamically change the data -->
+    <div id="slider-container"></div>
     <script>
-        const dispQuality = new DispProxToVal("#drawing");
-        dispQuality.init("../data/singleton.json");
+          document.addEventListener('DOMContentLoaded', () => {
+            const dispQuality = new DispProxToVal("#drawing");
+            dispQuality.init("../data/singleton.json");
+
+            // optional slider to dynamically change the data needs a  <div id="slider-container"></div>
+            const relevantNumberDigits = 4;
+            const slider = new Slider('#slider-container', dispQuality, {
+                min: -(relevantNumberDigits + 1),
+                max: (relevantNumberDigits + 1),
+                step: 0.01,
+                initialValue: 0,
+                width: '200 pt',
+                margin: '20px 0',
+                logScale: true,
+                precision: relevantNumberDigits + 1,
+                constantShift: 1, // ref. value 
+                shiftLog: relevantNumberDigits, // for logScale
+            });
+           
+        });
+
     </script>
 
 </body>

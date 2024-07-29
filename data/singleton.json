@@ -1,8 +1,8 @@
 {
 	"array": [
 		{
-			"label": "",
-			"value": 0.9937677347501954
+			"label": "Initial value: 0.9937. Change it with the slider",
+			"value": 0.9937
 		}
 	]
 }

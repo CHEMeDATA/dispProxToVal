@@ -14,43 +14,59 @@ class DispProxToVal {
 	getValueFromPath(obj, path) {
 		return path.split(".").reduce((acc, part) => acc && acc[part], obj);
 	}
-  
-    async init(fileName, options = {}) {
-        const data = await d3.json(fileName).catch(error => {
-            console.error("Error loading the JSON file:", error);
-            return null; // Ensure null is returned to avoid further processing
-        });
 
-        if (data) {
-            this.initialize(data, options);
-        }
-    }
+	async init(fileName, options = {}) {
+		const data = await d3.json(fileName).catch((error) => {
+			console.error("Error loading the JSON file:", error);
+			return null; // Ensure null is returned to avoid further processing
+		});
 
-    async initJson(jsonData, options = {}) {
-        this.initialize(jsonData, options);
-    }
+		if (data) {
+			this.initialize(data, options);
+		}
+	}
 
-    initialize(data, options = {}) {
-        const defaults = {
-            keys: ["label", "value"],
-            types: ["toCen"],
-            extract: "array",
-            selectionKeyTrue: "",
-            atomNumberKey: "molAtomIndices",
-        };
+	async initJson(jsonData, options = {}) {
+		this.initialize(jsonData, options);
+	}
 
-        // Override defaults with passed values
-        this.settings = { ...defaults, ...options };
-        this.numberGraphVertical = this.settings.keys.length;
-        this.settings.numberGraphVertical = this.settings.keys.length;
+	updateValue(value) {
+		console.log(`Slider value: ${value}`);
+		// Clear the SVG before redrawing
+		this.svg.selectAll("*").remove();
 
-        try {
-            this.data = this.processData(data);
-            this.draw();
-        } catch (error) {
-            console.error("Error initializing with data:", error);
-        }
-    }
+		// Update data or settings based on new value if needed
+		this.data.forEach((entry) => {
+			entry.dispValue1 = value; // Update the value dynamically
+			// If you have multiple values, update them accordingly
+			// entry.dispValue2 = value; // For example, if needed
+		});
+
+		// Redraw the SVG with updated data
+		this.draw();
+	}
+
+	initialize(data, options = {}) {
+		const defaults = {
+			keys: ["label", "value"],
+			types: ["toCen"],
+			extract: "array",
+			selectionKeyTrue: "",
+			atomNumberKey: "molAtomIndices",
+		};
+
+		// Override defaults with passed values
+		this.settings = { ...defaults, ...options };
+		this.numberGraphVertical = this.settings.keys.length;
+		this.settings.numberGraphVertical = this.settings.keys.length;
+
+		try {
+			this.data = this.processData(data);
+			this.draw();
+		} catch (error) {
+			console.error("Error initializing with data:", error);
+		}
+	}
 
 	processData(jsonData) {
 		let filteredData = jsonData;
@@ -70,7 +86,7 @@ class DispProxToVal {
 			.map((item) => {
 				// Dynamically create the object based on keys
 				const result = {};
-        result.molAtomIndices = item[this.settings.atomNumberKey];
+				result.molAtomIndices = item[this.settings.atomNumberKey];
 				this.settings.keys.forEach((key, index) => {
 					// Assuming the first key is always for labelVarSet, the rest are for dispValues
 					if (index === 0) {
@@ -82,6 +98,7 @@ class DispProxToVal {
 				return result;
 			});
 	}
+
 	getColorFromMap(expVal, index = 0) {
 		expVal = Math.max(0, Math.min(expVal, 1.0));
 		const colorMaps = [
@@ -126,8 +143,15 @@ class DispProxToVal {
 		return result.padStart(2, "0");
 	}
 
-	plot01(refposX = 0, refposY = 0, ratio = 0.9937,  molAtomIndices = [], is1Max = true, numberSteps = 3, width = 3) {
-     
+	plot01(
+		refposX = 0,
+		refposY = 0,
+		ratio = 0.9937,
+		molAtomIndices = [],
+		is1Max = true,
+		numberSteps = 3,
+		width = 3
+	) {
 		const stroke_width = 1;
 		let ratioDispData = [];
 		if (!is1Max) {
@@ -156,7 +180,10 @@ class DispProxToVal {
 			this.svg
 				.append("rect")
 				.attr("x", Math.round(refposX + i * width))
-				.attr("y", Math.round(refposY + heightCurBlockC - shiftUpBlock - heightCurBlock))
+				.attr(
+					"y",
+					Math.round(refposY + heightCurBlockC - shiftUpBlock - heightCurBlock)
+				)
 				.attr("width", Math.round(width))
 				.attr("height", heightCurBlock)
 				.attr("fill", this.getColorFromMap(value0to1, colorCodeCode))
@@ -171,26 +198,24 @@ class DispProxToVal {
 			is1Max
 		);
 		const fullwidthHiddenBox = ratioDispData.length * width + widhtOfScaleArea;
-		// Assume your visible rectangles are already drawn
 
 		// Calculate the bounds for the invisible rectangle
 		const bounds = {
-		  x: refposX,
-		  y: refposY,
-		  width: fullwidthHiddenBox,
-		  height: heightCurBlockC
+			x: refposX,
+			y: refposY,
+			width: fullwidthHiddenBox,
+			height: heightCurBlockC,
 		};
 
 		var tooltip = d3.select("#tooltip");
 
 		if (tooltip.empty()) {
-			// If the tooltip doesn't exist, log an informative message
 			console.log(
 				'The tooltip div is missing. Please include the following HTML snippet in your document: <div id="tooltip" style="position: absolute; visibility: hidden; padding: 8px; background-color: white; border: 1px solid #ccc; border-radius: 5px; pointer-events: none; z-index: 10;"></div>'
 			);
 		} else {
 			const self = this;
-			 
+
 			this.svg
 				.append("rect")
 				.attr("x", bounds.x)
@@ -202,43 +227,55 @@ class DispProxToVal {
 				.on("mouseover", function () {
 					tooltip.style("visibility", "visible");
 					if (self.JmolAppletA !== undefined && self.JmolAppletA !== null) {
-						for (let i =0;i < molAtomIndices.length; i++) {
-              console.log("select atomno = " + molAtomIndices[i]);
-							jmolScript("select atomno = " + (molAtomIndices[i] + 1) + " ;color [0,255,0]", self.JmolAppletA);
+						for (let i = 0; i < molAtomIndices.length; i++) {
+							console.log("select atomno = " + molAtomIndices[i]);
+							jmolScript(
+								"select atomno = " +
+									(molAtomIndices[i] + 1) +
+									" ;color [0,255,0]",
+								self.JmolAppletA
+							);
 						}
-					} 
+					}
 				})
 				.on("mousemove", function (event) {
 					tooltip
 						.text(ratio) // Update this based on the data or element
 						.style("left", event.pageX + 10 + "px") // Position tooltip to the right of the cursor
 						.style("top", event.pageY + 10 + "px"); // Position tooltip below the cursor
-				}).on("click", function (event) {
+				})
+				.on("click", function (event) {
 					if (self.JmolAppletA !== undefined && self.JmolAppletA !== null) {
-						for (let i =0;i < molAtomIndices.length; i++) {
-							jmolScript("select atomno = " + (molAtomIndices[i] + 1) + " ;color [0,255,255]", self.JmolAppletA)
+						for (let i = 0; i < molAtomIndices.length; i++) {
+							jmolScript(
+								"select atomno = " +
+									(molAtomIndices[i] + 1) +
+									" ;color [0,255,255]",
+								self.JmolAppletA
+							);
 						}
-						//	jmolScript("select atomno = 1 or atomno = 2;color [0,255,255]", self.JmolAppletA)
-					} 
+					}
 				})
 				.on("mouseout", function () {
 					tooltip.style("visibility", "hidden");
 					if (self.JmolAppletA !== undefined && self.JmolAppletA !== null) {
-						for (let i =0;i < molAtomIndices.length; i++) {
-							jmolScript("select atomno = " + (molAtomIndices[i] + 1) + " ;color cpk;", self.JmolAppletA)
+						for (let i = 0; i < molAtomIndices.length; i++) {
+							jmolScript(
+								"select atomno = " + (molAtomIndices[i] + 1) + " ;color cpk;",
+								self.JmolAppletA
+							);
 						}
-						//	jmolScript("select atomno = 1 or atomno = 2;color cpk", self.JmolAppletA)
-					} 
+					}
 				});
 		}
-
-
 	}
 
-	drawScale(refposX, refposY, totalWidth, totalHeight, is1Max) {
-		const lengthHorizontalTic = 3
-		const shift_line = is1Max ? 0 : totalHeight / 2;
-		const shift_text = is1Max ? totalHeight - 5 : totalHeight + 2;
+	drawScale(refposX, refposY, totalHeight, is1Max) {
+		const lengthHorizontalTic = 3;
+		const toCen = is1Max; // is1Max
+		console.log("totalHeight",totalHeight);
+		const shift_line = toCen ? 0 : totalHeight / 2;
+		const shift_text = toCen ? totalHeight - 5 : totalHeight + 2;
 		//horizontal line
 		this.svg
 			.append("line")
@@ -268,13 +305,13 @@ class DispProxToVal {
 			.attr("font-weight", "bold");
 		const bboxWidth = textElem.node().getBBox().width;
 		const widhtOfScaleArea = bboxWidth + lengthHorizontalTic;
-		return widhtOfScaleArea
+		return widhtOfScaleArea;
 	}
+
 	draw() {
 		let posX = 0;
 		const posYsp = 15;
 		const posYproj = posYsp + 18;
-
 
 		this.data.forEach((entry, i) => {
 			const { dispValue1, dispValue2, labelVarSet, molAtomIndices } = entry;
@@ -307,17 +344,23 @@ class DispProxToVal {
 			this.plot01(
 				posX + additionalShift,
 				posYsp,
-				dispValue1, 
-        molAtomIndices,
+				dispValue1,
+				molAtomIndices,
 				isToCen1,
 				numberSteps,
 				width
 			);
 			if (this.settings.types.length > 1) {
-				this.plot01(posX + additionalShift, posYproj, dispValue2, molAtomIndices, isToCen2); // Assuming you want to keep this as false
+				this.plot01(
+					posX + additionalShift,
+					posYproj,
+					dispValue2,
+					molAtomIndices,
+					isToCen2
+				); // Assuming you want to keep this as false
 			}
-			// shift the position for next one...		
-			posX += smallestValue + 3; 
+			// shift the position for next one...
+			posX += smallestValue + 3;
 		});
 		this.svg.attr("width", posX - 3).attr("height", this.height);
 	}
