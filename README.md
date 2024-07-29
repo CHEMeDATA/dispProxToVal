@@ -39,8 +39,12 @@ To use DispQuality in your project, include `dispProxToVal.js` in the head of yo
 ```html
 <script src="path/to/dispProxToVal.js"></script>
 ```
+or 
+```html
+    <script src="https://cdn.jsdelivr.net/gh/CHEMeDATA/dispProxToVal@latest/src/dispProxToVal.js"></script>
+```
 
-To use DispQuality in your project, include `dispProxToVal.js` in the head of your HTML:
+Then:
 
 ```html
 <svg id="drawing"></svg>
@@ -57,12 +61,15 @@ dispQuality.init("./spinFit.json");
 ## Examples
 
 [Example with series of graphs](https://chemedata.github.io/dispProxToVal/examples/index.html)
+
 [Example with example of input](https://chemedata.github.io/dispProxToVal/examples/index_single.html)
 from
 [these data](./data/doubleSeries.json)
 
- git tag
-git tag -a v0.0.9 -m "Release version 0.0.9"
-  git push origin v0.0.9
 
 
+```
+git tag
+git tag -a v0.0.10 -m "Release version 0.0.10"
+git push origin v0.0.10
+```

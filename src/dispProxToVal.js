@@ -31,7 +31,7 @@ class DispProxToVal {
 	}
 
 	updateValue(value) {
-		console.log(`Slider value: ${value}`);
+		//console.log(`Slider value: ${value}`);
 		// Clear the SVG before redrawing
 		this.svg.selectAll("*").remove();
 
@@ -273,7 +273,6 @@ class DispProxToVal {
 	drawScale(refposX, refposY, totalHeight, is1Max) {
 		const lengthHorizontalTic = 3;
 		const toCen = is1Max; // is1Max
-		console.log("totalHeight",totalHeight);
 		const shift_line = toCen ? 0 : totalHeight / 2;
 		const shift_text = toCen ? totalHeight - 5 : totalHeight + 2;
 		//horizontal line

@@ -5,13 +5,13 @@
 <head>
     <title>D3 Drawing Example</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
-        <!-- From a file
-
+    <!-- From a file
+  
+     <script src="../src/dispProxToVal.js"></script>
+    <script src="../src/slider.js"></script>
+     -->
     <script src="https://cdn.jsdelivr.net/gh/CHEMeDATA/dispProxToVal@latest/src/dispProxToVal.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/CHEMeDATA/dispProxToVal@latest/src/slider.js"></script>
-     -->
-    <script src="../src/dispProxToVal.js"></script>
-    <script src="../src/slider.js"></script>
 </head>
 
 <body>
@@ -108,10 +108,10 @@
     <!-- From a file -->
     <hr>
     <svg id="drawing"></svg>
-        <!-- optional slider to dynamically change the data -->
+    <!-- optional slider to dynamically change the data -->
     <div id="slider-container"></div>
     <script>
-          document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', () => {
             const dispQuality = new DispProxToVal("#drawing");
             dispQuality.init("../data/singleton.json");
 
@@ -129,7 +129,7 @@
                 constantShift: 1, // ref. value 
                 shiftLog: relevantNumberDigits, // for logScale
             });
-           
+
         });
 
     </script>
