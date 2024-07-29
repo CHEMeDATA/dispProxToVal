@@ -2,7 +2,7 @@
 
 ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/chemedata/dispProxToVal?latest)
 # dispProxToVal
-Represents how close a value is relative to a reference (1.0 in this case). It is reminiscent of a counterweight balance: The finest part of the pointer shows the finest deviation (10<sup>-3</sup> relative to the reference). As the width of the pointer increases, the sensitivity decreases by a factor of 10.
+Represents how close a value is relative to a reference (1.0 in this case). 
 
 <svg id="drawing"></svg>
 <div id="slider-container"></div>
@@ -30,7 +30,7 @@ Represents how close a value is relative to a reference (1.0 in this case). It i
         });
     });
 </script>
-
+It is reminiscent of a counterweight balance: The finest part of the pointer shows the finest deviation (10<sup>-3</sup> relative to the reference). Each time the width of the pointer increases, the sensitivity decreases by a factor of 10.
 
 ## Usage
 
