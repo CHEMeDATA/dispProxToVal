@@ -6,7 +6,7 @@
 
 <svg id="drawing"></svg>
 <div id="slider-container"></div>
-
+<div id="tooltip" style="position: absolute; visibility: hidden; padding: 8px; background-color: white; border: 1px solid #ccc; border-radius: 5px; pointer-events: none; z-index: 10;"></div>
 <script src="https://d3js.org/d3.v7.min.js"></script>
 <script src="src/dispProxToVal.js"></script>
 <script src="src/slider.js"></script>
