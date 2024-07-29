@@ -1,8 +1,10 @@
 ## Current Version
 
 ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/chemedata/dispProxToVal?latest)
+
 # dispProxToVal
-Represents how close a value is relative to a reference (1.0 in this case). 
+
+Represents how close a value is relative to a reference (1.0 in this case).
 
 <svg id="drawing"></svg>
 <div id="slider-container"></div>
@@ -35,7 +37,6 @@ It is reminiscent of a counterweight balance: The finest part of the pointer sho
 
 A variant when the reference is the upper bond:
 
-
 <svg id="drawing2"></svg>
 <div id="slider-container2"></div>
 <div id="tooltip" style="position: absolute; visibility: hidden; padding: 8px; background-color: white; border: 1px solid #ccc; border-radius: 5px; pointer-events: none; z-index: 10;"></div>
@@ -49,7 +50,7 @@ A variant when the reference is the upper bond:
             dispQuality2.initJson({ "array": [{ "label": "Initial value: 1.0. Change it with the slider", "value": 1.0 }] }, { types: ["toMax"] });
 
         const relevantNumberDigits = 4;
-        const slider = new Slider('#slider-container2', dispQuality, {
+        const slider2 = new Slider('#slider-container2', dispQuality, {
             min: -(relevantNumberDigits + 1),
             max: 0,
             step: 0.01,
@@ -71,7 +72,9 @@ To use DispQuality in your project, include `dispProxToVal.js` in the head of yo
 ```html
 <script src="path/to/dispProxToVal.js"></script>
 ```
-or 
+
+or
+
 ```html
     <script src="https://cdn.jsdelivr.net/gh/CHEMeDATA/dispProxToVal@latest/src/dispProxToVal.js"></script>
 ```
@@ -97,9 +100,6 @@ from
 [these data](./data/doubleSeries.json)
 
 [Example with example of input](https://chemedata.github.io/dispProxToVal/examples/index_single.html)
-
-
-
 
 ```
 git tag
