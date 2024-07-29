@@ -94,7 +94,7 @@ class Slider {
 					name: "data",
 					value: this.recalculatedValue,
 					// showIngestionInLog : true,
-					caller: "Slider"
+					callerClass: this.constructor.name
 				};
 
 				this.dispQuality.updateValue(updateContainer);

@@ -31,16 +31,19 @@ class DispProxToVal {
 	}
 
 	updateValue(updateContainer) {
-		const { value, showIngestionInLog } = updateContainer;
+		const { value, showIngestionInLog, callerClass } = updateContainer;
 
 		if (typeof value === "undefined") {
 			return;
 		}
 
 		if (showIngestionInLog) {
-			console.log(`updateValue of DispProxToVal...  value: ${value}`);
+			if (callerClass) {
+				console.log(`updateValue from  ${callerClass} class: value = ${value}`);
+			}
+			console.log(`updateValue ...  value = ${value}`);
 		}
-		
+
 		// Clear the SVG before redrawing
 		this.svg.selectAll("*").remove();
 
