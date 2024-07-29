@@ -11,7 +11,8 @@ class DispProxToVal {
 		d3.select(selector).style("shape-rendering", "crispEdges");
 	}
 
-	getValueFromPath(obj, path) {
+	// Private method to get value from a path
+	#getValueFromPath(obj, path) {
 		return path.split(".").reduce((acc, part) => acc && acc[part], obj);
 	}
 
@@ -22,12 +23,12 @@ class DispProxToVal {
 		});
 
 		if (data) {
-			this.initialize(data, options);
+			this.#initialize(data, options);
 		}
 	}
 
 	async initJson(jsonData, options = {}) {
-		this.initialize(jsonData, options);
+		this.#initialize(jsonData, options);
 	}
 
 	updateValue(updateContainer) {
@@ -47,6 +48,12 @@ class DispProxToVal {
 		// Clear the SVG before redrawing
 		this.svg.selectAll("*").remove();
 
+		// Ensure 'this.data' is defined
+		if (!this.data) {
+			console.error("Data is not initialized");
+			return;
+		}
+
 		// Update data or settings based on new value if needed
 		this.data.forEach((entry) => {
 			entry.dispValue1 = value; // Update the value
@@ -55,10 +62,10 @@ class DispProxToVal {
 		});
 
 		// Redraw the SVG with updated data
-		this.draw();
+		this.#draw();
 	}
 
-	initialize(data, options = {}) {
+	#initialize(data, options = {}) {
 		const defaults = {
 			keys: ["label", "value"],
 			types: ["toCen"],
@@ -73,18 +80,18 @@ class DispProxToVal {
 		this.settings.numberGraphVertical = this.settings.keys.length;
 
 		try {
-			this.data = this.processData(data);
-			this.draw();
+			this.data = this.#processData(data);
+			this.#draw();
 		} catch (error) {
 			console.error("Error initializing with data:", error);
 		}
 	}
 
-	processData(jsonData) {
+	#processData(jsonData) {
 		let filteredData = jsonData;
 		// Apply extraction if specified
 		if (this.settings.extract !== "") {
-			filteredData = this.getValueFromPath(jsonData, this.settings.extract);
+			filteredData = this.#getValueFromPath(jsonData, this.settings.extract);
 		}
 
 		// Dynamically filter and map based on the number of keys
@@ -111,7 +118,7 @@ class DispProxToVal {
 			});
 	}
 
-	getColorFromMap(expVal, index = 0) {
+	#getColorFromMap(expVal, index = 0) {
 		expVal = Math.max(0, Math.min(expVal, 1.0));
 		const colorMaps = [
 			["#FF0000", "#FF00FF", "#7777FF", "#00FFFF"],
@@ -129,17 +136,17 @@ class DispProxToVal {
 
 		const colorStart = usedColor[baseColorIndex];
 		const colorEnd = usedColor[baseColorIndex + 1] || usedColor[baseColorIndex];
-		const cR = this.interpolate(
+		const cR = this.#interpolate(
 			colorStart.substring(1, 3),
 			colorEnd.substring(1, 3),
 			adjust
 		);
-		const cG = this.interpolate(
+		const cG = this.#interpolate(
 			colorStart.substring(3, 5),
 			colorEnd.substring(3, 5),
 			adjust
 		);
-		const cB = this.interpolate(
+		const cB = this.#interpolate(
 			colorStart.substring(5, 7),
 			colorEnd.substring(5, 7),
 			adjust
@@ -148,14 +155,14 @@ class DispProxToVal {
 		return `#${cR}${cG}${cB}`;
 	}
 
-	interpolate(startHex, endHex, factor) {
+	#interpolate(startHex, endHex, factor) {
 		const start = parseInt(startHex, 16);
 		const end = parseInt(endHex, 16);
 		const result = Math.round(start + (end - start) * factor).toString(16);
 		return result.padStart(2, "0");
 	}
 
-	plot01(
+	#plot01(
 		refposX = 0,
 		refposY = 0,
 		ratio = 0.9937,
@@ -198,12 +205,12 @@ class DispProxToVal {
 				)
 				.attr("width", Math.round(width))
 				.attr("height", heightCurBlock)
-				.attr("fill", this.getColorFromMap(value0to1, colorCodeCode))
+				.attr("fill", this.#getColorFromMap(value0to1, colorCodeCode))
 				.attr("stroke", "black")
 				.attr("stroke-width", stroke_width);
 		});
 
-		const widhtOfScaleArea = this.drawScale(
+		const widhtOfScaleArea = this.#drawScale(
 			Math.round(refposX + ratioDispData.length * width),
 			refposY,
 			heightCurBlockC,
@@ -282,7 +289,7 @@ class DispProxToVal {
 		}
 	}
 
-	drawScale(refposX, refposY, totalHeight, is1Max) {
+	#drawScale(refposX, refposY, totalHeight, is1Max) {
 		const lengthHorizontalTic = 3;
 		const toCen = is1Max; // is1Max
 		const shift_line = toCen ? 0 : totalHeight / 2;
@@ -319,7 +326,7 @@ class DispProxToVal {
 		return widhtOfScaleArea;
 	}
 
-	draw() {
+	#draw() {
 		let posX = 0;
 		const posYsp = 15;
 		const posYproj = posYsp + 18;
@@ -352,7 +359,7 @@ class DispProxToVal {
 				additionalShift = Math.round((bbox.width - totalWidthInPt) / 2.0);
 			}
 
-			this.plot01(
+			this.#plot01(
 				posX + additionalShift,
 				posYsp,
 				dispValue1,
@@ -362,7 +369,7 @@ class DispProxToVal {
 				width
 			);
 			if (this.settings.types.length > 1) {
-				this.plot01(
+				this.#plot01(
 					posX + additionalShift,
 					posYproj,
 					dispValue2,
