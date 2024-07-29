@@ -13,7 +13,8 @@ Represents how close a value is relative to a reference (1.0 in this case).
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const dispQuality = new DispProxToVal("#drawing");
-        dispQuality.init("data/singleton.json");
+ //dispQuality.initJson({ "array": [{ "label": "Initial value: 1.0. Change it with the slider", "value": 1.0 }] }, { types: ["toCen"] });
+            dispQualit.initJson({ "array": [{ "label": "Initial value: 1.0. Change it with the slider", "value": 1.0 }] }, { types: ["toCen"] });
 
         const relevantNumberDigits = 4;
         const slider = new Slider('#slider-container', dispQuality, {
@@ -31,6 +32,37 @@ Represents how close a value is relative to a reference (1.0 in this case).
     });
 </script>
 It is reminiscent of a counterweight balance: The finest part of the pointer shows the finest deviation (10<sup>-3</sup> relative to the reference). Each time the width of the pointer increases, the sensitivity decreases by a factor of 10.
+
+A variant when the reference is the upper bond:
+
+
+<svg id="drawing"></svg>
+<div id="slider-container"></div>
+<div id="tooltip" style="position: absolute; visibility: hidden; padding: 8px; background-color: white; border: 1px solid #ccc; border-radius: 5px; pointer-events: none; z-index: 10;"></div>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="src/dispProxToVal.js"></script>
+<script src="src/slider.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const dispQuality = new DispProxToVal("#drawing");
+ //dispQuality.initJson({ "array": [{ "label": "Initial value: 1.0. Change it with the slider", "value": 1.0 }] }, { types: ["toCen"] });
+            dispQualit.initJson({ "array": [{ "label": "Initial value: 1.0. Change it with the slider", "value": 1.0 }] }, { types: ["toCen"] });
+
+        const relevantNumberDigits = 4;
+        const slider = new Slider('#slider-container', dispQuality, {
+            min: -(relevantNumberDigits + 1),
+            max: 0,
+            step: 0.01,
+            initialValue: 0,
+            width: '200 pt',
+            margin: '20px 0',
+            logScale: true,
+            precision: relevantNumberDigits + 1,
+            constantShift: 1, // ref. value 
+            shiftLog: relevantNumberDigits, // for logScale
+        });
+    });
+</script>
 
 ## Usage
 
