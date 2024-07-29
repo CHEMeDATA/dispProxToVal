@@ -17,7 +17,7 @@ class Slider {
 			max: options.max || 0,
 			step: options.step || 1,
 			initialValue: options.initialValue || 0,
-			width: options.width || "200 pt",
+			width: options.width || "100 pt",
 			margin: options.margin || "20px 0",
 			precision: options.precision || 2,
 			constantShift: options.constantShift || 0,
