@@ -374,7 +374,9 @@ class DispProxToVal {
 					posYproj,
 					dispValue2,
 					molAtomIndices,
-					isToCen2
+					isToCen2,
+				numberSteps,
+				width
 				); // Assuming you want to keep this as false
 			}
 			// shift the position for next one...
