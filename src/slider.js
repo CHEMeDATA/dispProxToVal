@@ -85,12 +85,22 @@ class Slider {
 	}
 
 	updateDispQuality() {
-		if (
-			this.dispQuality &&
-			typeof this.dispQuality.updateValue === "function"
-		) {
-			// Send the recalculated value instead of the slider value
-			this.dispQuality.updateValue(this.recalculatedValue);
+		if (typeof this.dispQuality.updateValue === "function") {
+			if (
+				this.dispQuality 
+			) {
+				// Send the recalculated value instead of the slider value
+				const updateContainer = {
+					name: "data",
+					value: this.recalculatedValue,
+					// showIngestionInLog : true,
+					caller: "Slider"
+				};
+
+				this.dispQuality.updateValue(updateContainer);
+			} else {
+				console.error("no value to transmit");
+			}
 		} else {
 			console.error("DispProxToVal class does not have an updateValue method");
 		}

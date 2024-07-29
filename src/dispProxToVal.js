@@ -30,14 +30,23 @@ class DispProxToVal {
 		this.initialize(jsonData, options);
 	}
 
-	updateValue(value) {
-		//console.log(`Slider value: ${value}`);
+	updateValue(updateContainer) {
+		const { value, showIngestionInLog } = updateContainer;
+
+		if (typeof value === "undefined") {
+			return;
+		}
+
+		if (showIngestionInLog) {
+			console.log(`updateValue of DispProxToVal...  value: ${value}`);
+		}
+		
 		// Clear the SVG before redrawing
 		this.svg.selectAll("*").remove();
 
 		// Update data or settings based on new value if needed
 		this.data.forEach((entry) => {
-			entry.dispValue1 = value; // Update the value dynamically
+			entry.dispValue1 = value; // Update the value
 			// If you have multiple values, update them accordingly
 			// entry.dispValue2 = value; // For example, if needed
 		});
