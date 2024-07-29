@@ -36,20 +36,20 @@ It is reminiscent of a counterweight balance: The finest part of the pointer sho
 A variant when the reference is the upper bond:
 
 
-<svg id="drawing"></svg>
-<div id="slider-container"></div>
+<svg id="drawing2"></svg>
+<div id="slider-container2"></div>
 <div id="tooltip" style="position: absolute; visibility: hidden; padding: 8px; background-color: white; border: 1px solid #ccc; border-radius: 5px; pointer-events: none; z-index: 10;"></div>
 <script src="https://d3js.org/d3.v7.min.js"></script>
 <script src="src/dispProxToVal.js"></script>
 <script src="src/slider.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const dispQuality = new DispProxToVal("#drawing");
+        const dispQuality2 = new DispProxToVal("#drawing2");
  //dispQuality.initJson({ "array": [{ "label": "Initial value: 1.0. Change it with the slider", "value": 1.0 }] }, { types: ["toCen"] });
-            dispQuality.initJson({ "array": [{ "label": "Initial value: 1.0. Change it with the slider", "value": 1.0 }] }, { types: ["toCen"] });
+            dispQuality2.initJson({ "array": [{ "label": "Initial value: 1.0. Change it with the slider", "value": 1.0 }] }, { types: ["toMax"] });
 
         const relevantNumberDigits = 4;
-        const slider = new Slider('#slider-container', dispQuality, {
+        const slider = new Slider('#slider-container2', dispQuality, {
             min: -(relevantNumberDigits + 1),
             max: 0,
             step: 0.01,
