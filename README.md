@@ -53,7 +53,7 @@ A variant when the reference is the upper bond:
             max: 0,
             step: 0.01,
             initialValue: 0,
-            width: '200 pt',
+            width: '100 pt',
             margin: '20px 0',
             logScale: true,
             precision: relevantNumberDigits + 1,
