@@ -34,7 +34,7 @@ Represents how close a value is relative to a reference (1.0 in this case).
 </script>
 It is reminiscent of a counterweight balance: The finest part of the pointer shows the finest deviation (10<sup>-3</sup> relative to the reference). Each time the width of the pointer increases, the sensitivity decreases by a factor of 10.
 
-A variant when the reference is the upper bond:
+This is a variant where the reference is the upper bound:
 
 <svg id="drawing2"></svg>
 <div id="slider-container2"></div>
