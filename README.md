@@ -14,7 +14,7 @@ Represents how close a value is relative to a reference (1.0 in this case).
     document.addEventListener('DOMContentLoaded', () => {
         const dispQuality = new DispProxToVal("#drawing");
  //dispQuality.initJson({ "array": [{ "label": "Initial value: 1.0. Change it with the slider", "value": 1.0 }] }, { types: ["toCen"] });
-            dispQualit.initJson({ "array": [{ "label": "Initial value: 1.0. Change it with the slider", "value": 1.0 }] }, { types: ["toCen"] });
+            dispQuality.initJson({ "array": [{ "label": "Initial value: 1.0. Change it with the slider", "value": 1.0 }] }, { types: ["toCen"] });
 
         const relevantNumberDigits = 4;
         const slider = new Slider('#slider-container', dispQuality, {
@@ -46,7 +46,7 @@ A variant when the reference is the upper bond:
     document.addEventListener('DOMContentLoaded', () => {
         const dispQuality = new DispProxToVal("#drawing");
  //dispQuality.initJson({ "array": [{ "label": "Initial value: 1.0. Change it with the slider", "value": 1.0 }] }, { types: ["toCen"] });
-            dispQualit.initJson({ "array": [{ "label": "Initial value: 1.0. Change it with the slider", "value": 1.0 }] }, { types: ["toCen"] });
+            dispQuality.initJson({ "array": [{ "label": "Initial value: 1.0. Change it with the slider", "value": 1.0 }] }, { types: ["toCen"] });
 
         const relevantNumberDigits = 4;
         const slider = new Slider('#slider-container', dispQuality, {
