@@ -50,7 +50,7 @@ A variant when the reference is the upper bond:
             dispQuality2.initJson({ "array": [{ "label": "Initial value: 1.0. Change it with the slider", "value": 1.0 }] }, { types: ["toMax"] });
 
         const relevantNumberDigits = 4;
-        const slider2 = new Slider('#slider-container2', dispQuality, {
+        const slider2 = new Slider('#slider-container2', dispQuality2, {
             min: -(relevantNumberDigits + 1),
             max: 0,
             step: 0.01,
