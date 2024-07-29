@@ -61,15 +61,16 @@ dispQuality.init("./spinFit.json");
 ## Examples
 
 [Example with series of graphs](https://chemedata.github.io/dispProxToVal/examples/index.html)
-
-[Example with example of input](https://chemedata.github.io/dispProxToVal/examples/index_single.html)
 from
 [these data](./data/doubleSeries.json)
+
+[Example with example of input](https://chemedata.github.io/dispProxToVal/examples/index_single.html)
+
 
 
 
 ```
 git tag
-git tag -a v0.0.10 -m "Release version 0.0.10"
-git push origin v0.0.10
+git tag -a v0.0.11 -m "Release version 0.0.11"
+git push origin v0.0.11
 ```

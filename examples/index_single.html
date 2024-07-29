@@ -113,7 +113,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const dispQuality = new DispProxToVal("#drawing");
-            dispQuality.init("../data/singleton.json");
+            dispQuality.initJson({ "array": [{ "label": "Initial value: 1.0. Change it with the slider", "value": 1.0 }] }, { types: ["toCen"] });
 
             // optional slider to dynamically change the data. Needs a <div id="slider-container"></div>
             const relevantNumberDigits = 4;
